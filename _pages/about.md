@@ -15,7 +15,12 @@ social: true # includes social icons at the bottom of the page
 ---
 
 Hi! Welcome to my webpage. <br>
-I graduated from IIT-D a few months ago. I worked as a graduate researcher under Prof. Tanmoy Chaktroborty in the Laboratory for Computational Social Sciences. My research interests primarily lie in explaining the behaviour of modern LLMs through mechanistic interpretation and establishing parallels between the biological think-tank the 'brain' and modern architectures for language modelling. I am currently working as a quantitative model validator for counter-party credit risk models in derivative trading at Wells Fargo. The opportunity to re-learn math fundamentals there after months of making LLMs learn from context is surely refreshing. (But my heart lies inside an MLP layer)
+I graduated from IIT-D on August 10, 2024. I worked as a graduate researcher under Prof. Tanmoy Chaktroborty in the Laboratory for Computational Social Sciences. My research interests primarily lie in explaining the behaviour of modern LLMs through mechanistic interpretation and establishing parallels between the biological think-tank the 'brain' and modern architectures for language modelling. I am currently working as a quantitative model validator for counter-party credit risk models in derivative trading at Wells Fargo. The opportunity to re-learn math fundamentals there after months of making LLMs learn from context is surely refreshing. (But my heart lies inside an MLP layer). <be>
+
+Apart from coding and doing math, I rock-climb, cycle and do a bit of sketching.<br>
+I also follow Chelsea F.C. and am an active FPL player. (Check out my team).<br>
+Do message me at any of my contact points if you want to talk about NLP, Maths or Hard Metal.
+
 
 <!--Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.-->
 
