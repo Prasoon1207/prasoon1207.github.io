@@ -19,7 +19,7 @@ I graduated from IIT-D on August 10, 2024, with a dual degree in Maths & Computi
 
 Apart from coding and doing math, I rock-climb, cycle and do a little bit of sketching.<br>
 I also follow Chelsea F.C. and am an active FPL player.<br>
-Do message me at any of my contact points if you want to talk about NLP, Maths or <a href = 'https://www.youtube.com/watch?v=84Tq-eAJIk4'>Progressive Rock</a>.
+Do message me at any of my contact points if you want to talk about NLP, Football, <a href = 'https://www.youtube.com/watch?v=84Tq-eAJIk4'>Progressive Rock</a> or basically anything except Chelsea's current form.
 
 
 <!--Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.-->
