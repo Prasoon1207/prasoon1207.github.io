@@ -1,7 +1,7 @@
 
 
 <p align = "centre">
-    ![](images/header.png)
+    ![](assets/paper/zhao2024multilingualism/header.png)
 </p>
 
 In this work, the authors introduce a new framework for explaining the property of multilingualism in Multilingual Large Language Models (MLLMs). How to define this property of 'Multlingualism'? The property of multilingualism enables MLLMs to text in multiple languages. In this paper, the authors have introduced a framework they call as **MWork** which states that MLLMs first convert queries to a unified representation, then they reason on this unified representation together with multlingual knowledge extraction and finally they translate queries to the target language.
