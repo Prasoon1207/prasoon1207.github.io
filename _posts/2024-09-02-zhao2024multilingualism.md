@@ -3,7 +3,7 @@ layout: post
 title: Polyglot LLMs
 date: 2024-09-02 21:01:00
 description: How do Large Language Models Handle Multilingualism?
-tags: multilingualism
+tags: formatting
 categories: sample_posts
 thumbnail: assets/papers/zhao2024multilingualism/header.png
 ---
