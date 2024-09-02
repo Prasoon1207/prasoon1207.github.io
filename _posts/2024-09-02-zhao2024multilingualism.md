@@ -11,7 +11,7 @@ thumbnail:
 -->
 
 <div style="text-align: center;">
-    <img src="assets/papers/zhao2024multilingualism/header.png" alt="paper_header">
+    <img src="/assets/papers/zhao2024multilingualism/header.png" alt="paper_header">
 </div>
 
 
