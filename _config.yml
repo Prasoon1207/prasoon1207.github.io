@@ -307,8 +307,8 @@ jekyll-archives:
     tag: "/blog/tag/:name/"
     category: "/blog/category/:name/"
 
-display_tags: ["formatting", "images", "links", "math", "code", "blockquote", "paper", "multilingualism"] # these tags will be displayed on the front page of your blog
-display_categories: ["external-services", "papers"] # these categories will be displayed on the front page of your blog
+display_tags: ["life", "paper", "multilingualism"] # these tags will be displayed on the front page of your blog
+display_categories: ["papers"] # these categories will be displayed on the front page of your blog
 
 # -----------------------------------------------------------------------------
 # Jekyll Scholar
