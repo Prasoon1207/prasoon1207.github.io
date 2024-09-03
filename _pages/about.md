@@ -21,7 +21,7 @@ _There is a golden sky._<br>
 <br>
 
 Hello There.<br>
-(General Kenobi)<br> (<- reflexive, can't help it)
+(<a href = 'https://www.youtube.com/watch?v=rEq1Z0bjdwc'> General Kenobi </a>) (reflexive, can't help) <br>
 
 I graduated from IIT-D on August 10, 2024, with a dual degree in Maths & Computing. During my last two years there, I worked as a graduate researcher under <a href = 'https://tanmoychak.com/'>Prof. Tanmoy Chaktraborty</a> in the <a href = 'lcs2.in'>Laboratory for Computational Social Sciences</a>. My research interests primarily lie in explaining the behaviour of modern LLMs through mechanistic interpretation and establishing parallels between the biological think-tank (yes, the _squishy brain_) and modern architectures for language modelling (_I am afraid modern transformers are mostly Decepticons). I am working on some cool problems as a quantitative model researcher at <a href = 'wellsfargo.com'>Wells Fargo</a> . The opportunity to re-learn <a href = 'https://www.math.uchicago.edu/~lawler/finbook.pdf'> math </a> fundamentals there after months of making LLMs learn from a context is surely refreshing. (But my heart still lies inside a neural net). <br>
 
