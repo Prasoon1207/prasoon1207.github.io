@@ -17,7 +17,7 @@ social: true # includes social icons at the bottom of the page
 _Hold your head up high_,<br>
 _For at the end of the storm,_<br>
 _There is a golden sky._<br>
-From (<a href = 'https://www.youtube.com/watch?v=xx0Ru_1zPVk'>Gerry and the Pacemakers</a>)
+CC: <a href = 'https://www.youtube.com/watch?v=xx0Ru_1zPVk'>YNWA</a>
 <br><br><br><br>
 
 Hello There.<br>
