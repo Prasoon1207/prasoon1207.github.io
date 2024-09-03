@@ -14,7 +14,12 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-Hi! Welcome to my webpage. <br><br>
+<br>
+_When you walk through a storm..<br>
+Hold your head up high...<br>
+For at the end of the storm,<br>
+There is a golden sky_<br>
+<br>
 I graduated from IIT-D on August 10, 2024, with a dual degree in Maths & Computing. There, I also worked as a graduate researcher under <a href = 'https://tanmoychak.com/'>Prof. Tanmoy Chaktraborty</a> in the <a href = 'lcs2.in'>Laboratory for Computational Social Sciences</a>. My research interests primarily lie in explaining the behaviour of modern LLMs through mechanistic interpretation and establishing parallels between the biological think-tank (squishy brain) and modern architectures for language modelling. I am currently working as a quantitative model researcher at <a href = 'wellsfargo.com'>Wells Fargo</a>. The opportunity to re-learn math fundamentals there after months of making LLMs learn from context is surely refreshing. (But my heart still lies inside a neural net). <br>
 
 Apart from coding and doing math, I cycle and do a little bit of sketching.<br>
