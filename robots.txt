@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://prasoon1207.github.io/blog//sitemap.xml
+Sitemap: https://prasoon1207.github.io/sitemap.xml
