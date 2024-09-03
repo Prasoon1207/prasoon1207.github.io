@@ -1,11 +1,3 @@
----
-layout: post
-title: How do Large Language Models Handle Multilingualism?
-date: 2024-09-02 21:01:00
-description: How do Large Language Models Handle Multilingualism?
----
-
-
 <div style="text-align: center;">
     <img src="/assets/papers/zhao2024multilingualism/header.png" alt="paper_header">
 </div>
