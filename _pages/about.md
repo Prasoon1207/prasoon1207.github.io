@@ -13,12 +13,14 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
+<!--
 <br>
 _Hold your head up high_,<br>
 _For at the end of the storm,_<br>
 _There is a golden sky._<br>
 CC: <a href = 'https://www.youtube.com/watch?v=xx0Ru_1zPVk'>YNWA</a>
 <br><br><br><br>
+-->
 
 Hello There.<br>
 (<a href = 'https://www.youtube.com/watch?v=rEq1Z0bjdwc'> General Kenobi </a>) (reflexive, can't help) <br>
