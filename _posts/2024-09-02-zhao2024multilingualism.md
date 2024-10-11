@@ -7,7 +7,6 @@ categories: papers
 featured: true
 ---
 
-<div style="margin: 40px;">
 <div style="text-align: center;">
     <img src="/assets/papers/zhao2024multilingualism/header.png" alt="paper_header">
 </div>
@@ -45,4 +44,3 @@ The authors have further shown that selectively fine-tuning the parameters in th
 <br>
 **Questions for further research -**
 - Polyglots are shown to process native languages at much greater ease as compared to other languages, even at the same level of proficiency. Given we declare it as the native language for the LLMs, can we quantify if being subjective to pre-training in multilingual corpora, affects the _ease_ of handling English queries? (Let the setting be purely reasoning-based and let _ease_ be quantified as the number of neurons activated in the task-solving layer.
-</div>
