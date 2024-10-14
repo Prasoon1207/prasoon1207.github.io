@@ -12,6 +12,7 @@ featured: true
 </div>
 
 
+<div tyle="margin-left: 50px; margin-right: 50px;">
 In this work, the authors introduce a new framework for explaining the property of multilingualism in Multilingual Large Language Models (MLLMs). How do we define this property of 'Multilingualism'? The property of multilingualism enables MLLMs to text in multiple languages. In this paper, the authors have introduced a framework they call **MWork** which states that MLLMs first convert queries to a unified representation, then they reason on this unified representation together with multilingual knowledge extraction and finally, they translate queries to the target language.
 
 1. Conversion to a _unified representation_ - <br>
@@ -26,7 +27,7 @@ In this work, the authors introduce a new framework for explaining the property 
 
 **How will I verify it?**
 
- I will look at each of the three steps separately: _conversion_ to unified English representation, _task-solving_ and _translation_. **_Conversion_** -> Relative amount of English / non-English tokens; _Does the converted representation still relate to the original query? (Can we quantify it?) <- credits to Eshaan Tanwar from LCS2 for suggesting this._ 2.  **_Task-Solving_ MLWork** claims that knowledge is extracted from language specific neurons in the FFN structures. _Does deactivating these neurons have an affect on the performance?_ ALSO, is the knowledge diffused into different languages or localized to the language of the pretraining text? _Consider a setup when some knowledge is only limited to Vietnamese literature. Does deactivating neurons of FFN pertaining to Vietnamese completely downgrade MLLM performance?_<br><br><br>
+ I will look at each of the three steps separately: _conversion_ to unified English representation, _task-solving_ and _translation_. **_Conversion_** -> Relative amount of English / non-English tokens; _Does the converted representation still relate to the original query? (Can we quantify it?) <- credits to Eshaan Tanwar from LCS2 for suggesting this._ 2.  **_Task-Solving_ MLWork** claims that knowledge is extracted from language specific neurons in the FFN structures. _Does deactivating these neurons have an affect on the performance?_ ALSO, is the knowledge diffused into different languages or localized to the language of the pretraining text? _Consider a setup when some knowledge is only limited to Vietnamese literature. Does deactivating neurons of FFN of Vietnamese completely downgrade MLLM performance?_<br><br><br>
 		Is there a way to identify neurons relating to some knowledge?<br>
         How much overlap do they have with language-specific neurons?<br><br><br>
 _**Translation**_ -> I will certainly want to look at works trying to mechanistically interpret translation in MLLMs. (Is there a gap here?). Using those, one can design experiments to test this.
@@ -44,3 +45,4 @@ The authors have further shown that selectively fine-tuning the parameters in th
 <br>
 **Questions for further research -**
 - Polyglots are shown to process native languages at much greater ease as compared to other languages, even at the same level of proficiency. Given we declare it as the native language for the LLMs, can we quantify if being subjective to pre-training in multilingual corpora, affects the _ease_ of handling English queries? (Let the setting be purely reasoning-based and let _ease_ be quantified as the number of neurons activated in the task-solving layer.
+</div>
