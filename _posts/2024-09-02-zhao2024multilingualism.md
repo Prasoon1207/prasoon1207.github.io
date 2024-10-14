@@ -12,7 +12,7 @@ featured: true
 </div>
 
 
-<div tyle="margin-left: 50px; margin-right: 50px;">
+<div style="margin-left: 50px; margin-right: 50px;">
 In this work, the authors introduce a new framework for explaining the property of multilingualism in Multilingual Large Language Models (MLLMs). How do we define this property of 'Multilingualism'? The property of multilingualism enables MLLMs to text in multiple languages. In this paper, the authors have introduced a framework they call **MWork** which states that MLLMs first convert queries to a unified representation, then they reason on this unified representation together with multilingual knowledge extraction and finally, they translate queries to the target language.
 
 1. Conversion to a _unified representation_ - <br>
