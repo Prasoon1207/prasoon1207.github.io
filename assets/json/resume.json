@@ -46,37 +46,40 @@
   "awards": [
     {
       "title": "Summar Undergraduate Research Award",
-      "date": "2022-04-01",
-      "awarder": "Ministry of Education, India",
-      "summary": "Algorithms for denoising sub-urban astroimages; Approximating stellar characteristics and clustering."
+      "awarded": "Ministry of Education, India",
+      "summary": "Algorithms for denoising sub-urban astro-images; Approximating stellar characteristics and clustering."
     },
     {
       "title": "Kishore Vigyanik Protsahan Yojana (KVPY-SX)",
       "date": "2019-04-01",
       "awarder": "Indian Institute of Science",
-      "summary": "Awarded KVPY Fellowship after achieving AIR - 262 in a nation-wide science based evaluation."
+      "summary": "Awarded KVPY Fellowship after achieving AIR - 262 in a nationwide science based evaluation."
     }
   ],
   "publications": [
     {
-      "name": "Multilingual Needle in a Haystack: Investigating Long-Context Behavior of Multilingual Large Language Models",
-      "publisher": "(Submitted at AAAI' 25)",
-      "releaseDate": "",
-      "url": "https://www.arxiv.org/abs/2408.10151",
-      "summary": "Exploring limits of in-context retrieval of multilingual relevant information among a set of distractor passages."
+      "name": "Can LLMs replace Neil deGrasse Tyson? Evaluating the Reliability of LLMs as Science Communicators",
+      "publisher": "Accepted at EMNLP' 24",
+      "url": "https://aclanthology.org/2024.emnlp-main.889/",
+      "summary": "Stress testing scientific fact retrieval and reasoning capabilities of LLMs."
     },
     {
-      "name": "Can LLMs replace Neil deGrasse Tyson? Evaluating the Reliability of LLMs as Science Communicators",
-      "publisher": "(Submitted at EMNLP' 24)",
-      "releaseDate": "",
-      "url": "https://openreview.net/forum?id=tfgLqoDUBR",
-      "summary": "Stress testing scientific fact retrival and reasoning capabilities of LLMs."
+      "name": "Information Anxiety in Large Language Models",
+      "publisher": "Submitted at Nature Communications",
+      "url": "https://arxiv.org/abs/2411.10813",
+      "summary": "Identifying critical internal strains in LLMs, while processing highly prevalent information."
+    },
+    {
+      "name": "Multilingual Needle in a Haystack: Investigating Long-Context Behavior of Multilingual Large Language Models",
+      "publisher": "Submitted at NAACL' 25",
+      "url": "https://www.arxiv.org/abs/2408.10151",
+      "summary": "Exploring multilingual in-context retrieval of relevant information among a set of distractor passages."
     }
   ],
   "skills": [
     {
       "name": "Natural Language Processing",
-      "level": "Intermediate",
+      "level": "Advanced",
       "icon": "",
       "keywords": [
         "Mechanistic Interpretation",
@@ -120,12 +123,24 @@
     {
       "name": "Prof. Tanmoy Chakraborty",
       "icon": "fa-solid fa-laptop",
-      "reference": "Associate Professor, Department of Electrical Engineering, IIT - Delhi"
+      "reference": "Chair Professor in AI, Department of Electrical Engineering, IIT-Delhi"
     },
     {
       "name": "Professor Niladri Chatterjee",
       "icon": "fa-solid fa-thumbtack",
-      "reference": "Professor, Department of Mathematics, IIT - Delhi"
+      "reference": "Professor, Department of Mathematics, IIT-Delhi"
+    },
+    {
+      "name": "Professor Aparna Mehra",
+      "icon": "fa-solid fa-thumbtack",
+      "reference": "Professor, Department of Mathematics, IIT-Delhi"
+    },
+    {
+      "name": "Soham Dan",
+      "icon": "fa-solid fa-thumbtack",
+      "reference": "Senior Research Scientist, Microsoft"
     }
+    
+    
   ]
 }
