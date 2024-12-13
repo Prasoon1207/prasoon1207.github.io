@@ -12,7 +12,7 @@ featured: true
     <img src="/assets/papers/zhao2024multilingualism/header.png" alt="paper_header">
 </div>
 
-<div style="margin-left: 30px; margin-right: 30px;">
+
 	
 In this work, the authors introduce a new framework for explaining the property of multilingualism in Multilingual Large Language Models (MLLMs). How do we define this property of 'Multilingualism'? The property of multilingualism enables MLLMs to text in multiple languages. In this paper, the authors have introduced a framework they call **MWork** which states that MLLMs first convert queries to a unified representation. They reason on this unified representation with multilingual knowledge extraction and finally, they translate queries to the target language.
 
@@ -44,4 +44,3 @@ The authors have deactivated language-specific neurons in the final layers of th
 <br>
 **Questions for further research -**
 - Polyglots are shown to process native languages at much greater ease as compared to other languages, even at the same level of proficiency. Given we declare it as the native language for the LLMs, can we quantify if being subjective to pre-training in multilingual corpora, affects the _ease_ of handling English queries? (Let the setting be purely reasoning-based and let _ease_ be quantified as the number of neurons activated in the task-solving layer.
-</div>
