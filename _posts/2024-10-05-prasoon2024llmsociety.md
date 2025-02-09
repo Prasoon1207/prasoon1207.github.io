@@ -8,7 +8,7 @@ featured: true
 ---
 
 <div style="text-align: center;">
-    <img src="/assets/img/llmsoceity/marvin_minsky.jpg" alt="Marvin Minsky">
+    <img src="/assets/img/llmsociety/marvin_minsky.jpg" alt="Marvin Minsky">
 </div>
 
 <br>
@@ -20,7 +20,7 @@ I often consider myself lucky (and blessed) to have gotten to approach computati
 
 
 <div style="text-align: center;">
-    <img src="/assets/img/llmsociety/psychmodelhumanintel.png" alt="a psychological model of human intelligence">
+    <img src="/assets/img/llmsociety/psychmodelhumanintel.png" alt="a psychological model of human intelligence" width="500" height="300">
 </div>
 
 <br>
@@ -32,7 +32,7 @@ In our efforts to model human intelligence, we should take a great deal of motiv
 **Where does LLM come in?**
 
 <div style="text-align: center;">
-    <img src="/assets/img/llmsociety/deepmodelhumanintel.png" alt="a deep net model of human intelligence">
+    <img src="/assets/img/llmsociety/deepmodelhumanintel.png" alt="a deep net model of human intelligence" width="500" height="300">
 </div>
 <br>
 Replacing these individual human minds / agents with LLMs seems the way to go. Thinking from first principles, a human mind is a more general computational unit. Similarly, this model is not focussing on creating *expert LLMs* but sort of *expert LLM communities*.
