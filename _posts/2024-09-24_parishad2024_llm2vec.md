@@ -5,7 +5,6 @@ date: 2024-09-24 15:09:00
 description: Can decoders produce rich representations?
 tags: paper
 categories: papers
-featured: true
 ---
 
 <div style="text-align: center;">
