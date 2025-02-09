@@ -3,7 +3,7 @@ title: llm2vec
 layout: post
 date: 2024-09-24 15:09:00
 description: Can decoders produce rich representations?
-tags: paper embeddings
+tags: paper
 categories: papers
 featured: true
 ---
