@@ -8,7 +8,7 @@ categories: papers
 ---
 
 <div style="text-align: center;">
-    <img src="/assets/papers/parishad2024llm2vec/parishad2024llm2vec.png" alt="paper_header">
+    <img src="/assets/papers/parishad2024llm2vec/header.png" alt="paper_header">
 </div>
 
 <br><br>
