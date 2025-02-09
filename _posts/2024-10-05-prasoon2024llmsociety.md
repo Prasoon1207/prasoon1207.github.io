@@ -8,7 +8,7 @@ featured: true
 ---
 
 <div style="text-align: center;">
-    <img src="/assets/img/llmsociety/marvin_minsky.jpg" alt="Marvin Minsky">
+    <img src="/assets/img/llmsociety/marvin_minsky.jpg" alt="Marvin Minsky" width="300" height="300">
 </div>
 
 <br>
