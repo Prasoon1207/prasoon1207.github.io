@@ -1,5 +1,5 @@
 ---
-title: MWork
+title: mwork
 layout: post
 date: 2024-08-31 15:09:00
 description: How do Large Language Models Handle Multilingualism?
