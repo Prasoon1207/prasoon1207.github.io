@@ -3,28 +3,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const penguin = document.createElement('div');
     penguin.id = 'penguin-companion';
     
-    // Adorable, custom SVG penguin
+    // Adorable, custom SVG penguin (side profile)
     penguin.innerHTML = `
         <svg width="36" height="36" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="transition: transform 0.2s ease; display: block;">
-            <!-- Feet -->
-            <ellipse cx="11" cy="29" rx="4" ry="2" fill="#ffa500" />
-            <ellipse cx="21" cy="29" rx="4" ry="2" fill="#ffa500" />
+            <!-- Back Foot (darker orange for shadow depth) -->
+            <ellipse cx="17" cy="29" rx="4" ry="1.5" fill="#cc8400" />
+            <!-- Front Foot -->
+            <ellipse cx="12" cy="29" rx="4.5" ry="1.8" fill="#ffa500" />
             <!-- Body -->
-            <ellipse cx="16" cy="18" rx="9" ry="11" fill="#222" />
-            <!-- Belly -->
-            <ellipse cx="16" cy="19" rx="6" ry="8" fill="#fff" />
-            <!-- Flippers -->
-            <ellipse cx="6" cy="18" rx="2" ry="6" fill="#222" transform="rotate(15, 6, 18)" />
-            <ellipse cx="26" cy="18" rx="2" ry="6" fill="#222" transform="rotate(-15, 26, 18)" />
+            <ellipse cx="15" cy="19" rx="7" ry="10" fill="#222" />
+            <!-- Belly (left-aligned for side profile facing left) -->
+            <ellipse cx="11" cy="19" rx="4.5" ry="7.5" fill="#fff" />
             <!-- Head -->
-            <circle cx="16" cy="9" r="6" fill="#222" />
-            <!-- Eyes -->
-            <circle cx="14" cy="8" r="1" fill="#fff" />
-            <circle cx="18" cy="8" r="1" fill="#fff" />
-            <circle cx="14" cy="8" r="0.5" fill="#000" />
-            <circle cx="18" cy="8" r="0.5" fill="#000" />
-            <!-- Beak -->
-            <polygon points="15,9 17,9 16,12" fill="#ffa500" />
+            <circle cx="13" cy="9" r="6" fill="#222" />
+            <!-- Beak (pointing left) -->
+            <polygon points="6,8 10,7 10,10" fill="#ffa500" />
+            <!-- Eye (single eye for side profile) -->
+            <circle cx="10" cy="7" r="1" fill="#fff" />
+            <circle cx="10" cy="7" r="0.5" fill="#000" />
+            <!-- Wing / Flipper -->
+            <ellipse cx="16" cy="18" rx="2" ry="5" fill="#111" transform="rotate(-10, 16, 18)" />
         </svg>
     `;
     
