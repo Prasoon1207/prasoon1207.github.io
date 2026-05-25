@@ -110,3 +110,32 @@ pre code {
     padding: 0;
     background-color: transparent;
 }
+
+/* Bottom-Left Penguin Companion styling */
+#penguin-companion {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    width: 36px;
+    height: 36px;
+    z-index: 9999;
+    pointer-events: none; /* Prevent blocking clicks on page links underneath */
+    user-select: none;
+}
+
+#penguin-companion.waddling svg {
+    animation: penguin-waddle 0.35s infinite alternate ease-in-out;
+}
+
+@keyframes penguin-waddle {
+    0% {
+        transform: rotate(-8deg) translateY(-1.5px);
+    }
+    100% {
+        transform: rotate(8deg) translateY(0px);
+    }
+}
+
+#penguin-companion.facing-right svg {
+    transform: scaleX(-1);
+}
