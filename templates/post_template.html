@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <link rel="stylesheet" href="../style.css">
+    <!-- MathJax for LaTeX rendering -->
+    <script>
+        window.MathJax = {{
+            tex: {{
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            }},
+            options: {{
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }}
+        }};
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</head>
+
+<body>
+    <header>
+        <h1>{title}</h1>
+        <p class="meta"><i>Published on {formatted_date} &bull; {reading_time} min read</i></p>
+    </header>
+
+    <hr>
+
+    <main>
+        <article>
+{content}
+        </article>
+    </main>
+
+    <hr>
+
+    <footer>
+        <p><a href="../index.html">&larr; Back to Home</a></p>
+    </footer>
+</body>
+
+</html>
