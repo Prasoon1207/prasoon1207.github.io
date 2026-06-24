@@ -130,12 +130,13 @@ def parse_markdown_fallback(text):
 # Directories
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 CONTENT_DIR = os.path.join(BASE_DIR, "content")
+CODE_REFERENCES_DIR = os.path.join(BASE_DIR, "code references")
 POST_DIR = os.path.join(BASE_DIR, "post")
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 
 def init_directories():
     """Create folders if they do not exist."""
-    for folder in [CONTENT_DIR, POST_DIR, TEMPLATES_DIR]:
+    for folder in [CONTENT_DIR, CODE_REFERENCES_DIR, POST_DIR, TEMPLATES_DIR]:
         if not os.path.exists(folder):
             os.makedirs(folder)
             print(f"Created folder: {os.path.basename(folder)}")
@@ -291,9 +292,35 @@ def build_site():
         posts_list_html += f'                    <span class="meta">[{post["date"]}]</span> &ndash; \n'
         posts_list_html += f'                    <a href="post/{post["filename"]}">{post["title"]}</a>\n'
         posts_list_html += f'                </li>\n'
-        
+
+    # Generate code references list for index.html
+    code_reference_files = [f for f in os.listdir(CODE_REFERENCES_DIR) if f.endswith(".md")]
+    code_references = []
+
+    for reference_file in code_reference_files:
+        reference_path = os.path.join(CODE_REFERENCES_DIR, reference_file)
+        metadata, _ = parse_markdown_file(reference_path)
+        base_name = os.path.splitext(reference_file)[0]
+
+        code_references.append({
+            "title": metadata.get("title", base_name.replace("-", " ").title()),
+            "url": metadata.get("url", "#"),
+            "date": metadata.get("date", "")
+        })
+
+    code_references.sort(key=lambda x: x["date"], reverse=True)
+
+    code_references_list_html = ""
+    for reference in code_references:
+        code_references_list_html += f'                <li>\n'
+        code_references_list_html += f'                    <a href="{reference["url"]}" target="_blank">{reference["title"]}</a>\n'
+        code_references_list_html += f'                </li>\n'
+
     # Compile index.html
-    index_html = index_template.format(posts_list=posts_list_html.rstrip())
+    index_html = index_template.format(
+        posts_list=posts_list_html.rstrip(),
+        code_references_list=code_references_list_html.rstrip()
+    )
     
     # Save index.html in root
     index_path = os.path.join(BASE_DIR, "index.html")
