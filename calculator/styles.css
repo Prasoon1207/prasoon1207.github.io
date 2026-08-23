@@ -66,15 +66,6 @@ body {
         calc(env(safe-area-inset-left, 0px) + var(--gap));
 }
 
-/* The keys are square, so the keypad's height follows its width. On a short
-   viewport, a phone held sideways, the shell is sized off height instead to keep
-   the bottom row on screen. */
-@media (max-height: 560px) {
-    .app {
-        width: min(100%, 26rem, 50vh);
-    }
-}
-
 /* Display */
 
 .readout {
@@ -212,6 +203,36 @@ body {
 
     .key--operator:hover:not(.is-pressed) {
         background-color: var(--accent-lit);
+    }
+}
+
+/* Square keys tie the keypad's height to its width, which on a short viewport
+   (a phone held sideways) would shrink them until they were awkward to hit.
+   There the keypad spreads across the extra width instead and divides up the
+   height it has, giving wide keys that stay comfortably tappable.
+   This has to follow the rules above to override the square aspect ratio. */
+@media (max-height: 560px) {
+    .app {
+        width: min(100%, 34rem);
+    }
+
+    .readout {
+        flex: 0 0 auto;
+        min-height: 0;
+        padding-bottom: 0.6rem;
+    }
+
+    .keypad {
+        /* A zero basis and no minimum let the rows divide the space that is
+           left rather than demanding their content height. */
+        flex: 1 1 0;
+        min-height: 0;
+        grid-auto-rows: 1fr;
+    }
+
+    .key {
+        aspect-ratio: auto;
+        border-radius: 1.75rem;
     }
 }
 

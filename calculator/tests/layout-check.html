@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Calculator layout check</title>
+    <style>
+        body {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 13px;
+        }
+
+        #frames {
+            /* Kept out of the way: the frames only exist to be measured. */
+            position: absolute;
+            top: 0;
+            left: -20000px;
+        }
+
+        iframe {
+            border: 0;
+        }
+
+        .fail {
+            color: #b00020;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Layout check</h1>
+    <p>
+        Serve the repository (<code>python3 -m http.server 8000</code>) and open
+        <code>/calculator/tests/layout-check.html</code>. Every key must stay on
+        screen at every size below.
+    </p>
+    <div id="frames"></div>
+    <pre id="out">measuring...</pre>
+
+    <script>
+        // Viewport units resolve against the iframe's own box, so an iframe sized
+        // to a phone's screen stands in for that viewport.
+        var CASES = [
+            ["iPhone SE (1st gen) portrait", 320, 568],
+            ["iPhone SE portrait", 375, 667],
+            ["iPhone 14 portrait", 390, 844],
+            ["iPhone 14 Pro Max portrait", 430, 932],
+            ["iPhone SE (1st gen) landscape", 568, 320],
+            ["iPhone SE landscape", 667, 375],
+            ["iPhone 14 landscape", 844, 390],
+            ["iPhone 14 Pro Max landscape", 932, 430],
+            ["iPad portrait", 768, 1024],
+            ["iPad landscape", 1024, 768],
+            ["desktop", 1440, 900]
+        ];
+
+        // Apple asks for 44pt touch targets. Landscape keys are wide but short,
+        // so height alone is allowed to dip below that as long as the area holds up.
+        var MIN_KEY_HEIGHT = 32;
+        var MIN_KEY_AREA = 44 * 44;
+
+        var host = document.getElementById("frames");
+        var frames = CASES.map(function (testCase) {
+            var frame = document.createElement("iframe");
+            frame.width = testCase[1];
+            frame.height = testCase[2];
+            frame.src = "../index.html";
+            host.appendChild(frame);
+            return { name: testCase[0], width: testCase[1], height: testCase[2], frame: frame };
+        });
+
+        function measure() {
+            var lines = [];
+            var failures = 0;
+
+            frames.forEach(function (entry) {
+                var doc = entry.frame.contentDocument;
+                var keypad = doc.getElementById("keypad");
+                var equals = doc.querySelector('[data-key="eq"]');
+                var display = doc.getElementById("display");
+
+                var keypadBox = keypad.getBoundingClientRect();
+                var equalsBox = equals.getBoundingClientRect();
+                var displayBox = display.getBoundingClientRect();
+                var scrollHeight = doc.documentElement.scrollHeight;
+                var scrollWidth = doc.documentElement.scrollWidth;
+
+                var problems = [];
+                if (keypadBox.bottom > entry.height + 0.5) {
+                    problems.push("keypad reaches " + keypadBox.bottom.toFixed(1) + " of " + entry.height);
+                }
+                if (scrollHeight > entry.height + 0.5) {
+                    problems.push("overflows vertically (" + scrollHeight + " > " + entry.height + ")");
+                }
+                if (scrollWidth > entry.width + 0.5) {
+                    problems.push("overflows horizontally (" + scrollWidth + " > " + entry.width + ")");
+                }
+                if (equalsBox.height < MIN_KEY_HEIGHT) {
+                    problems.push("keys only " + equalsBox.height.toFixed(1) + "px tall");
+                }
+                if (equalsBox.width * equalsBox.height < MIN_KEY_AREA) {
+                    problems.push("key target too small");
+                }
+                if (displayBox.top < 0) {
+                    problems.push("display pushed off the top");
+                }
+                if (displayBox.bottom > keypadBox.top + 0.5) {
+                    problems.push("display overlaps the keypad");
+                }
+
+                if (problems.length) failures++;
+                lines.push(
+                    (problems.length ? "FAIL" : "ok  ") + " " + entry.name +
+                    " (" + entry.width + "x" + entry.height + "): " +
+                    "key " + equalsBox.width.toFixed(0) + "x" + equalsBox.height.toFixed(0) + ", " +
+                    "keypad bottom " + keypadBox.bottom.toFixed(0) + "/" + entry.height +
+                    (problems.length ? "  -- " + problems.join("; ") : "")
+                );
+            });
+
+            lines.push("");
+            lines.push("RESULT: " + (failures === 0 ? "ALL PASS" : failures + " FAILED"));
+
+            var out = document.getElementById("out");
+            out.textContent = lines.join("\n");
+            out.className = failures === 0 ? "" : "fail";
+        }
+
+        // The load event waits for every iframe, so layout has settled by now.
+        window.addEventListener("load", measure);
+    </script>
+</body>
+
+</html>

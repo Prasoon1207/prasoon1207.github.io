@@ -60,6 +60,12 @@ python3 -m http.server 8000
 python3 calculator/icons/generate_icons.py
 ```
 
+After any change to the layout, open
+`http://localhost:8000/calculator/tests/layout-check.html`. It renders the app at
+eleven phone, tablet and desktop sizes and checks that no key falls off the
+bottom edge, that nothing overflows or overlaps, and that the keys stay large
+enough to hit. It should report `ALL PASS`.
+
 | File | Role |
 | --- | --- |
 | `engine.js` | All arithmetic and keypad state. No DOM, so Node can test it directly. |
@@ -68,13 +74,16 @@ python3 calculator/icons/generate_icons.py
 | `sw.js` | Service worker that caches the app for offline use. |
 | `manifest.webmanifest` | Name, colours and icons used when installed. |
 | `icons/` | Generated PNGs, plus the script that draws them. |
+| `tests/` | Arithmetic tests, and the layout check described above. |
 
 Service workers only run over HTTPS or on `localhost`, so offline support is
 active on GitHub Pages and during local preview, but not if you open
 `index.html` straight off the filesystem.
 
-If you edit any asset, bump `CACHE_NAME` in `sw.js` so already-installed copies
-pick up the new version.
+The service worker answers from its cache first and refreshes in the background,
+so a deploy reaches installed copies on their next launch. That does mean the
+launch right after a deploy can still show the previous version. `CACHE_NAME` in
+`sw.js` only needs bumping to evict files that have been renamed or deleted.
 
 ## If you later want a real native app
 
