@@ -1,0 +1,309 @@
+:root {
+    --bg: #101014;
+    --bg-glow: #1b1b26;
+    --key-digit: #26262e;
+    --key-digit-lit: #33333d;
+    --key-function: #3a3a46;
+    --key-function-lit: #4a4a58;
+    --accent: #6f5cf0;
+    --accent-lit: #8877ff;
+    --text: #f7f7fa;
+    --text-dim: #8d8d9c;
+    --gap: clamp(0.5rem, 2.2vmin, 0.85rem);
+    --radius: 999px;
+    --display-size: clamp(2.5rem, 12vmin, 4rem);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    /* Stops the whole page rubber-banding when a key is dragged. */
+    overscroll-behavior: none;
+}
+
+/* In Safari, 100% can measure past the collapsing toolbars and push the bottom
+   row of keys off screen; dvh tracks the space actually visible. */
+@supports (height: 100dvh) {
+
+    html,
+    body {
+        height: 100dvh;
+    }
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(120% 80% at 50% 0%, var(--bg-glow) 0%, var(--bg) 60%),
+        var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    /* A calculator has nothing worth selecting, and long-press menus get in the way. */
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    width: min(100%, 26rem);
+    height: 100%;
+    max-height: 56rem;
+    padding:
+        calc(env(safe-area-inset-top, 0px) + 1rem)
+        calc(env(safe-area-inset-right, 0px) + var(--gap))
+        calc(env(safe-area-inset-bottom, 0px) + var(--gap))
+        calc(env(safe-area-inset-left, 0px) + var(--gap));
+}
+
+/* Display */
+
+.readout {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    min-height: 6rem;
+    padding: 0 0.4rem 1.1rem;
+    overflow: hidden;
+    text-align: right;
+}
+
+.readout__expression {
+    height: 1.4em;
+    color: var(--text-dim);
+    font-size: 1.0625rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.01em;
+}
+
+.readout__value {
+    width: 100%;
+    /* --fit is set from JS so long numbers shrink instead of overflowing. */
+    font-size: calc(var(--display-size) * var(--fit, 1));
+    white-space: nowrap;
+    font-weight: 300;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    transition: font-size 90ms ease-out;
+    touch-action: pan-x;
+}
+
+.readout__value.is-error {
+    color: #ff6b81;
+}
+
+.readout__hint {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    opacity: 0.75;
+    transition: opacity 300ms ease-out;
+}
+
+.readout__hint.is-hidden {
+    opacity: 0;
+}
+
+/* Keypad */
+
+.keypad {
+    display: grid;
+    flex: 0 0 auto;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap);
+}
+
+.key {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    padding: 0;
+    border: none;
+    border-radius: var(--radius);
+    background-color: var(--key-digit);
+    color: var(--text);
+    font-family: inherit;
+    font-size: clamp(1.25rem, 5.4vmin, 1.75rem);
+    font-weight: 400;
+    cursor: pointer;
+    /* Skips the double-tap-to-zoom wait so presses register immediately. */
+    touch-action: manipulation;
+    transition: transform 70ms ease-out, background-color 120ms ease-out, color 120ms ease-out;
+}
+
+.key--function {
+    background-color: var(--key-function);
+    font-size: clamp(1.05rem, 4.6vmin, 1.4rem);
+}
+
+.key--operator {
+    background-color: var(--accent);
+    font-size: clamp(1.5rem, 6.4vmin, 2rem);
+    font-weight: 500;
+}
+
+.key--wide {
+    aspect-ratio: auto;
+    grid-column: span 2;
+    justify-content: flex-start;
+    /* Keeps the 0 digit sitting over the column it would occupy if square. */
+    padding-left: 12.5%;
+}
+
+/* Marks the operator that is waiting for its second number. */
+.key--operator.is-active {
+    background-color: var(--text);
+    color: var(--accent);
+}
+
+.key.is-pressed {
+    transform: scale(0.94);
+}
+
+.key.is-pressed:not(.key--operator) {
+    background-color: var(--key-digit-lit);
+}
+
+.key--function.is-pressed {
+    background-color: var(--key-function-lit);
+}
+
+.key--operator.is-pressed {
+    background-color: var(--accent-lit);
+}
+
+.key:focus-visible {
+    outline: 2px solid var(--accent-lit);
+    outline-offset: 3px;
+}
+
+@media (hover: hover) {
+    .key:hover:not(.is-pressed) {
+        background-color: var(--key-digit-lit);
+    }
+
+    .key--function:hover:not(.is-pressed) {
+        background-color: var(--key-function-lit);
+    }
+
+    .key--operator:hover:not(.is-pressed) {
+        background-color: var(--accent-lit);
+    }
+}
+
+/* Square keys tie the keypad's height to its width, which on a short viewport
+   (a phone held sideways) would shrink them until they were awkward to hit.
+   There the keypad spreads across the extra width instead and divides up the
+   height it has, giving wide keys that stay comfortably tappable.
+   This has to follow the rules above to override the square aspect ratio. */
+@media (max-height: 560px) {
+    .app {
+        width: min(100%, 34rem);
+    }
+
+    .readout {
+        flex: 0 0 auto;
+        min-height: 0;
+        padding-bottom: 0.6rem;
+    }
+
+    .keypad {
+        /* A zero basis and no minimum let the rows divide the space that is
+           left rather than demanding their content height. */
+        flex: 1 1 0;
+        min-height: 0;
+        grid-auto-rows: 1fr;
+    }
+
+    .key {
+        aspect-ratio: auto;
+        border-radius: 1.75rem;
+    }
+}
+
+/* "Add to Home Screen" prompt, shown only in the browser */
+
+.install-tip {
+    position: fixed;
+    top: calc(env(safe-area-inset-top, 0px) + 0.6rem);
+    left: 50%;
+    display: flex;
+    width: min(calc(100% - 1.6rem), 24rem);
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.5rem 0.6rem 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.9rem;
+    background-color: rgba(38, 38, 46, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transform: translateX(-50%);
+}
+
+.install-tip[hidden] {
+    display: none;
+}
+
+.install-tip__text {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+}
+
+.install-tip__icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: none;
+    stroke: #4a9bff;
+    stroke-linecap: round;
+    stroke-width: 1.8;
+}
+
+.install-tip__close {
+    flex: 0 0 auto;
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-left: auto;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.noscript {
+    position: fixed;
+    inset: auto 1rem 1rem;
+    margin: 0;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    background-color: var(--key-function);
+    text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .key,
+    .readout__value,
+    .readout__hint {
+        transition: none;
+    }
+}
