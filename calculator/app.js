@@ -61,11 +61,15 @@
         }, 110);
     }
 
+    // The swipe gesture is not discoverable, so the hint stays up long enough to
+    // be read and then gets out of the way for good.
     var hintDismissed = false;
+    var hintTimer = setTimeout(dismissHint, 7000);
 
     function dismissHint() {
         if (hintDismissed) return;
         hintDismissed = true;
+        clearTimeout(hintTimer);
         hintEl.classList.add("is-hidden");
     }
 
