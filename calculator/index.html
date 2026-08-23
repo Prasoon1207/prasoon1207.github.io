@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- viewport-fit=cover lets the app paint under the notch and home indicator;
+         locking the scale stops iOS zooming when keys are tapped in quick succession. -->
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Calculator</title>
+    <meta name="description" content="A fast, offline calculator you can install on your iPhone home screen.">
+
+    <meta name="theme-color" content="#101014">
+    <meta name="color-scheme" content="dark">
+
+    <!-- Home-screen app behaviour on iOS. -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Calculator">
+
+    <link rel="manifest" href="manifest.webmanifest">
+    <!-- iOS only accepts PNG here; without it the home-screen icon is a page screenshot. -->
+    <link rel="apple-touch-icon" href="icons/icon-180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main class="app" aria-label="Calculator">
+        <section class="readout">
+            <div class="readout__expression" id="expression" aria-hidden="true"></div>
+            <output class="readout__value" id="display" role="status" aria-live="polite" aria-label="Result">0</output>
+            <p class="readout__hint" id="hint">Swipe the number to delete a digit</p>
+        </section>
+
+        <div class="keypad" id="keypad">
+            <button class="key key--function" data-key="clear" data-role="clear" aria-label="All clear">AC</button>
+            <button class="key key--function" data-key="neg" aria-label="Toggle sign">&plusmn;</button>
+            <button class="key key--function" data-key="pct" aria-label="Percent">%</button>
+            <button class="key key--operator" data-key="div" aria-label="Divide">&divide;</button>
+
+            <button class="key" data-key="7">7</button>
+            <button class="key" data-key="8">8</button>
+            <button class="key" data-key="9">9</button>
+            <button class="key key--operator" data-key="mul" aria-label="Multiply">&times;</button>
+
+            <button class="key" data-key="4">4</button>
+            <button class="key" data-key="5">5</button>
+            <button class="key" data-key="6">6</button>
+            <button class="key key--operator" data-key="sub" aria-label="Subtract">&minus;</button>
+
+            <button class="key" data-key="1">1</button>
+            <button class="key" data-key="2">2</button>
+            <button class="key" data-key="3">3</button>
+            <button class="key key--operator" data-key="add" aria-label="Add">+</button>
+
+            <button class="key key--wide" data-key="0">0</button>
+            <button class="key" data-key="." aria-label="Decimal point">.</button>
+            <button class="key key--operator key--equals" data-key="eq" aria-label="Equals">=</button>
+        </div>
+    </main>
+
+    <aside class="install-tip" id="installTip" hidden>
+        <p class="install-tip__text">
+            Install this: tap
+            <svg class="install-tip__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 3v11M12 3 8.5 6.5M12 3l3.5 3.5" />
+                <path d="M7 11H5.5v9.5h13V11H17" />
+            </svg>
+            <b>Share</b>, then <b>Add to Home Screen</b>.
+        </p>
+        <button class="install-tip__close" id="installTipClose" aria-label="Dismiss">&times;</button>
+    </aside>
+
+    <noscript>
+        <p class="noscript">This calculator needs JavaScript to be enabled.</p>
+    </noscript>
+
+    <script src="engine.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
