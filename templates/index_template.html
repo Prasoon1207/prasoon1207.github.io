@@ -1,51 +1,224 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Minimal Blog & Thoughts</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <title>Prasoon Bajpai</title>
 
-<body>
-    <!-- Bio Section -->
-    <header>
-        <h1>My Thoughts & Musings</h1>
-        <p>Welcome to my minimalist corner of the web. Here, I write about software engineering, reinforcement learning, design simplicity, and other thoughts that occupy my mind.</p>
-        <p class="meta">
-            <b>Connect:</b>
-            <a href="mailto:email@example.com">Email</a> |
-            <a href="https://github.com" target="_blank">GitHub</a> |
-            <a href="https://twitter.com" target="_blank">Twitter</a>
-        </p>
-    </header>
+    <meta name="author" content="Prasoon Bajpai">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
 
-    <hr>
+  <body>
+    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+      <tr style="padding:0px">
+        <td style="padding:0px">
 
-    <main>
-        <!-- Blog Section -->
-        <section id="blog">
-            <h2>Thoughts</h2>
-            <ul>
+          <!-- Bio -->
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr style="padding:0px">
+              <td style="padding:2.5%;width:63%;vertical-align:middle">
+                <p class="name" style="text-align: center;">
+                  Prasoon Bajpai
+                </p>
+                <p>
+                  I am a pre-doctoral researcher at <a href="https://deepmind.google/">Google DeepMind</a>,
+                  where I am advised by <a href="https://research.google/people/106762/">Shachi Dave</a>
+                  and <a href="https://parthatalukdar.github.io/">Partha Talukdar</a>. I currently work
+                  on recursive self-improvement. I have also worked on cross-lingual transfer and
+                  pre-training evaluations, as well as on open-endedness &mdash; applying it to
+                  automated red-teaming. Before DeepMind, I completed my bachelor's and master's in
+                  Mathematics and Computing at <a href="https://home.iitd.ac.in/">IIT Delhi</a>,
+                  where my master's thesis was supervised by
+                  <a href="https://tanmoychak.com/">Dr. Tanmoy Chakraborty</a>.
+                </p>
+                <p>
+                  Outside of research, my big interest is strength training, and I am currently
+                  focused on improving my bouldering. I am also drawn to endurance sports,
+                  particularly long-distance running. Beyond that, I watch a lot of English Premier
+                  League football &mdash; I support Chelsea &mdash; and I am an ardent
+                  Fantasy Premier League player.
+                </p>
+                <p style="text-align:center">
+                  <a href="https://scholar.google.com/citations?user=NmHOvbIAAAAJ&amp;hl=en">Scholar</a> &nbsp;/&nbsp;
+                  <a href="https://twitter.com/PrasoonBajpai12">Twitter</a> &nbsp;/&nbsp;
+                  <a href="https://github.com/Prasoon1207/">GitHub</a>
+                </p>
+              </td>
+              <td style="padding:2.5%;width:37%;max-width:37%">
+                <img style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo" src="images/profile.svg">
+              </td>
+            </tr>
+          </tbody></table>
+
+          <!-- Research intro -->
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:16px;width:100%;vertical-align:middle">
+                <h2>Research</h2>
+                <p>
+                  I am interested in multilingual NLP, long-context reasoning, test-time scaling,
+                  interpretability, and the evaluation of large language models.
+                </p>
+              </td>
+            </tr>
+          </tbody></table>
+
+          <!-- Publications -->
+          <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+            <tr>
+              <td style="padding:8px 16px;width:100%;vertical-align:middle">
+                <a href="https://arxiv.org/abs/2606.21954">
+                  <span class="papertitle">Are Multilingual Models Actually Improving? Isolating True Cross-Lingual Transfer</span>
+                </a>
+                <br>
+                <strong>Prasoon Bajpai</strong>,
+                <a href="https://scholar.google.com/scholar?q=Eleftheria+Briakou">Eleftheria Briakou</a>,
+                <a href="https://scholar.google.com/scholar?q=Colin+Cherry">Colin Cherry</a>,
+                <a href="https://scholar.google.com/scholar?q=Preethi+Jyothi">Preethi Jyothi</a>,
+                <a href="https://scholar.google.com/scholar?q=Vihari+Piratla">Vihari Piratla</a>
+                <br>
+                <em>EMNLP</em>, 2026
+                <br>
+                <a href="https://arxiv.org/abs/2606.21954">arXiv</a>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:8px 16px;width:100%;vertical-align:middle">
+                <a href="https://arxiv.org/abs/2602.00092">
+                  <span class="papertitle">Interpreting and Controlling Model Behavior via Constitutions for Atomic Concept Edits</span>
+                </a>
+                <br>
+                <a href="https://scholar.google.com/scholar?q=Neha+Kalibhat">Neha Kalibhat</a>,
+                <a href="https://scholar.google.com/scholar?q=Zi+Wang">Zi Wang</a>,
+                <strong>Prasoon Bajpai</strong>,
+                <a href="https://scholar.google.com/scholar?q=Drew+Proud">Drew Proud</a>,
+                <a href="https://scholar.google.com/scholar?q=Wenjun+Zeng">Wenjun Zeng</a>,
+                <a href="https://scholar.google.com/scholar?q=Been+Kim">Been Kim</a>,
+                <a href="https://scholar.google.com/scholar?q=Mani+Malek">Mani Malek</a>
+                <br>
+                <em>AISTATS</em>, 2026
+                <br>
+                <a href="https://arxiv.org/abs/2602.00092">arXiv</a>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:8px 16px;width:100%;vertical-align:middle">
+                <a href="https://arxiv.org/abs/2504.12845">
+                  <span class="papertitle">Can LLMs Reason over Extended Multilingual Contexts? Towards Long-Context Evaluation Beyond Retrieval and Haystacks</span>
+                </a>
+                <br>
+                <a href="https://scholar.google.com/scholar?q=Amey+Hengle">Amey Hengle</a>,
+                <strong>Prasoon Bajpai</strong>,
+                <a href="https://scholar.google.com/scholar?q=Soham+Dan">Soham Dan</a>,
+                <a href="https://scholar.google.com/scholar?q=Tanmoy+Chakraborty">Tanmoy Chakraborty</a>
+                <br>
+                <em>EACL</em>, 2026
+                <br>
+                <a href="https://arxiv.org/abs/2504.12845">arXiv</a>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:8px 16px;width:100%;vertical-align:middle">
+                <a href="https://arxiv.org/abs/2505.15508">
+                  <span class="papertitle">Multilingual Test-Time Scaling via Initial Thought Transfer</span>
+                </a>
+                <br>
+                <strong>Prasoon Bajpai</strong>,
+                <a href="https://scholar.google.com/scholar?q=Tanmoy+Chakraborty">Tanmoy Chakraborty</a>
+                <br>
+                <em>arXiv</em>, 2025
+                <br>
+                <a href="https://arxiv.org/abs/2505.15508">arXiv</a>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:8px 16px;width:100%;vertical-align:middle">
+                <a href="https://arxiv.org/abs/2411.10813">
+                  <span class="papertitle">Information Anxiety in Large Language Models</span>
+                </a>
+                <br>
+                <strong>Prasoon Bajpai</strong>,
+                <a href="https://scholar.google.com/scholar?q=Sarah+Masud">Sarah Masud</a>,
+                <a href="https://scholar.google.com/scholar?q=Tanmoy+Chakraborty">Tanmoy Chakraborty</a>
+                <br>
+                <em>arXiv</em>, 2024
+                <br>
+                <a href="https://arxiv.org/abs/2411.10813">arXiv</a>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:8px 16px;width:100%;vertical-align:middle">
+                <a href="https://arxiv.org/abs/2408.10151">
+                  <span class="papertitle">Multilingual Needle in a Haystack: Investigating Long-Context Behavior of Multilingual Large Language Models</span>
+                </a>
+                <br>
+                <a href="https://scholar.google.com/scholar?q=Amey+Hengle">Amey Hengle</a>,
+                <strong>Prasoon Bajpai</strong>,
+                <a href="https://scholar.google.com/scholar?q=Soham+Dan">Soham Dan</a>,
+                <a href="https://scholar.google.com/scholar?q=Tanmoy+Chakraborty">Tanmoy Chakraborty</a>
+                <br>
+                <em>NAACL</em>, 2025
+                <br>
+                <a href="https://arxiv.org/abs/2408.10151">arXiv</a>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:8px 16px;width:100%;vertical-align:middle">
+                <a href="https://arxiv.org/abs/2409.14037">
+                  <span class="papertitle">Can LLMs Replace Neil deGrasse Tyson? Evaluating the Reliability of LLMs as Science Communicators</span>
+                </a>
+                <br>
+                <strong>Prasoon Bajpai</strong>,
+                <a href="https://scholar.google.com/scholar?q=Niladri+Chatterjee">Niladri Chatterjee</a>,
+                <a href="https://scholar.google.com/scholar?q=Subhabrata+Dutta">Subhabrata Dutta</a>,
+                <a href="https://scholar.google.com/scholar?q=Tanmoy+Chakraborty">Tanmoy Chakraborty</a>
+                <br>
+                <em>EMNLP</em>, 2024
+                <br>
+                <a href="https://arxiv.org/abs/2409.14037">arXiv</a>
+              </td>
+            </tr>
+
+          </tbody></table>
+
+          <!-- Thoughts (blog) -->
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:16px;width:100%;vertical-align:middle">
+                <h2>Thoughts</h2>
+                <ul style="padding-left:18px;margin-top:8px;">
 {posts_list}
-            </ul>
-        </section>
+                </ul>
+              </td>
+            </tr>
+          </tbody></table>
 
-        <!-- Code References Section -->
-        <section id="code-references">
-            <h2>Code References</h2>
-            <ul>
-{code_references_list}
-            </ul>
-        </section>
-    </main>
+          <!-- Footer -->
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:0px">
+                <br>
+                <p style="text-align:right;font-size:small;">
+                  Website template adapted from <a href="https://github.com/jonbarron/jonbarron.github.io">Jon Barron</a>.
+                </p>
+              </td>
+            </tr>
+          </tbody></table>
 
-    <hr>
-
-    <footer>
-        <p class="meta"><small>&copy; 2026. Built with pure semantic HTML and CSS. Instant load times, zero trackers, zero bloat.</small></p>
-    </footer>
-</body>
-
+        </td>
+      </tr>
+    </table>
+  </body>
 </html>

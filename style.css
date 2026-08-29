@@ -1,112 +1,120 @@
-/* Premium Minimalist Typography & Styling System */
-body {
-    font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
-    font-size: 14px;
-    line-height: 1.1;
-    color: #222;
-    background-color: #fdfdfd;
-    max-width: 680px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
+/* Stylesheet based on Jon Barron's website template
+   (https://github.com/jonbarron/jonbarron.github.io) */
 
 a {
-    color: #0066cc;
-    text-decoration: none;
+  color: #1772d0;
+  text-decoration: none;
 }
 
+a:focus,
 a:hover {
-    text-decoration: underline;
+  color: #f09228;
+  text-decoration: none;
 }
 
-h1, h2, h3, h4 {
-    font-weight: 600;
-    line-height: 1.05;
-    margin-top: 24px;
-    margin-bottom: 16px;
+body,
+td,
+th,
+tr,
+p,
+a,
+li {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
 }
 
-h1 {
-    font-size: 2rem;
-    margin-top: 0;
+body {
+  background-color: #ffffff;
+  color: #000000;
+  margin: 0;
+}
+
+strong {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
 }
 
 h2 {
-    font-size: 1.5rem;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 8px;
+  margin: 0;
+  font-weight: normal;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 22px;
 }
 
-hr {
-    border: 0;
-    border-top: 1px solid #eee;
-    margin: 32px 0;
+.papertitle {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
 }
 
-ul {
-    padding-left: 20px;
-    margin-bottom: 20px;
+.name {
+  padding-top: 20px;
+  margin: 0;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 32px;
 }
 
-li {
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-/* Blockquote for highlights or quotes */
-blockquote {
-    margin: 0;
-    padding-left: 16px;
-    border-left: 4px solid #ccc;
-    color: #666;
-    font-style: italic;
-}
-
-/* Collapsible Details/Summary sections for minimal interaction */
-details {
-    margin-bottom: 12px;
-    padding: 8px 12px;
-    border: 1px solid #eee;
-    border-radius: 6px;
-    background-color: #fafafa;
-}
-
-details[open] summary {
-    margin-bottom: 8px;
-    border-bottom: 1px dashed #ddd;
-    padding-bottom: 4px;
-}
-
-summary {
-    font-weight: 600;
-    cursor: pointer;
-    user-select: none;
+span.highlight {
+  background-color: #ffffd0;
 }
 
 .meta {
-    color: #666;
-    font-size: 0.9rem;
+  color: #666666;
+  font-size: 13px;
 }
 
-/* Standardized Code styling for technical writing */
-code, pre {
-    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
-    font-size: 0.9em;
-    background-color: #f6f8fa;
-    border-radius: 6px;
+/* ---- blog post pages ---- */
+
+.post-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 2.5%;
 }
 
-code {
-    padding: 0.2em 0.4em;
+.post-page h1 {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 4px;
 }
 
-pre {
-    padding: 16px;
-    overflow: auto;
-    line-height: 1.1;
+.post-page p,
+.post-page li {
+  line-height: 1.6;
 }
 
-pre code {
-    padding: 0;
-    background-color: transparent;
+.post-page blockquote {
+  margin: 1em 0;
+  padding-left: 14px;
+  border-left: 3px solid #dddddd;
+  color: #555555;
+  font-style: italic;
+}
+
+.post-page code,
+.post-page pre {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  background-color: #f6f8fa;
+  border-radius: 4px;
+}
+
+.post-page code {
+  padding: 2px 5px;
+}
+
+.post-page pre {
+  padding: 14px;
+  overflow: auto;
+}
+
+.post-page pre code {
+  padding: 0;
+  background-color: transparent;
+}
+
+.post-page hr {
+  border: 0;
+  border-top: 1px solid #eeeeee;
+  margin: 24px 0;
 }

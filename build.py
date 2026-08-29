@@ -211,9 +211,8 @@ def build_site():
     # Scan content directory for markdown files
     md_files = [f for f in os.listdir(CONTENT_DIR) if f.endswith(".md")]
     if not md_files:
-        print("No markdown (.md) files found in content/ directory.")
-        return
-        
+        print("No markdown (.md) files found in content/ directory. Index will show a 'coming soon' placeholder.")
+
     posts = []
     
     print(f"Found {len(md_files)} posts to process.")
@@ -285,7 +284,7 @@ def build_site():
     # Sort posts by date (newest first)
     posts.sort(key=lambda x: x["date"], reverse=True)
     
-    # Generate thoughts lists for index.html
+    # Generate thoughts list for index.html
     posts_list_html = ""
     for post in posts:
         posts_list_html += f'                <li>\n'
@@ -293,33 +292,13 @@ def build_site():
         posts_list_html += f'                    <a href="post/{post["filename"]}">{post["title"]}</a>\n'
         posts_list_html += f'                </li>\n'
 
-    # Generate code references list for index.html
-    code_reference_files = [f for f in os.listdir(CODE_REFERENCES_DIR) if f.endswith(".md")]
-    code_references = []
-
-    for reference_file in code_reference_files:
-        reference_path = os.path.join(CODE_REFERENCES_DIR, reference_file)
-        metadata, _ = parse_markdown_file(reference_path)
-        base_name = os.path.splitext(reference_file)[0]
-
-        code_references.append({
-            "title": metadata.get("title", base_name.replace("-", " ").title()),
-            "url": metadata.get("url", "#"),
-            "date": metadata.get("date", "")
-        })
-
-    code_references.sort(key=lambda x: x["date"], reverse=True)
-
-    code_references_list_html = ""
-    for reference in code_references:
-        code_references_list_html += f'                <li>\n'
-        code_references_list_html += f'                    <a href="{reference["url"]}" target="_blank">{reference["title"]}</a>\n'
-        code_references_list_html += f'                </li>\n'
+    # If there are no posts yet, show a friendly placeholder
+    if not posts:
+        posts_list_html = '                <li class="meta">The first one is coming soon.</li>\n'
 
     # Compile index.html
     index_html = index_template.format(
-        posts_list=posts_list_html.rstrip(),
-        code_references_list=code_references_list_html.rstrip()
+        posts_list=posts_list_html.rstrip()
     )
     
     # Save index.html in root
