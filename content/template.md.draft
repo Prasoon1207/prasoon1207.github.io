@@ -1,0 +1,25 @@
+---
+title: Welcome to My Blog
+date: 2026-09-03
+reading_time: 2
+---
+
+This is a draft post template. When you are ready to publish, rename this file to remove the `.draft` suffix (e.g. `2026-09-03-welcome.md`), run `./build.sh`, and push to GitHub!
+
+### Features Supported
+
+You can write standard Markdown:
+* **Bold text**, *italics*, and `inline code`
+* Bullet points and numbered lists
+* Blockquotes and hyperlinks: [My Homepage](https://prasoon1207.github.io/)
+
+### Math & Equations (LaTeX)
+
+LaTeX math is supported out of the box via MathJax:
+
+Inline math: $\mathbb{E}_{x \sim p}[f(x)]$
+
+Block equations:
+$$
+\nabla_\theta J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^T \nabla_\theta \log \pi_\theta(a_t | s_t) R(\tau) \right]
+$$
