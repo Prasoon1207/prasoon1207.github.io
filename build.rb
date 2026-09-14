@@ -30,7 +30,7 @@ def parse_markdown_file(filepath)
       meta_text.each_line do |line|
         if line.include?(':')
           key, val = line.split(':', 2)
-          metadata[key.strip.downcase] = val.strip
+          metadata[key.strip.downcase] = val.strip.sub(/\A["']/, '').sub(/["']\z/, '')
         end
       end
       content = parts[2].strip

@@ -157,7 +157,7 @@ def parse_markdown_file(filepath):
             for line in meta_text.split("\n"):
                 if ":" in line:
                     key, val = line.split(":", 1)
-                    metadata[key.strip().lower()] = val.strip()
+                    metadata[key.strip().lower()] = val.strip().strip("\"'")
             content = parts[2].strip()
             
     return metadata, content
