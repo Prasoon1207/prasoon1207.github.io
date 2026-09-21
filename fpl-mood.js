@@ -8,7 +8,11 @@
   var GREEN = [46, 160, 67];
   var RED = [207, 34, 46];
 
-  fetch('fpl.json', { cache: 'no-store' })
+  // Resolve path to fpl.json accurately from root or /post/
+  var isPost = window.location.pathname.indexOf('/post/') !== -1;
+  var jsonPath = isPost ? '../fpl.json' : 'fpl.json';
+
+  fetch(jsonPath, { cache: 'no-store' })
     .then(function (r) { return r.json(); })
     .then(function (d) {
       var s = Math.max(-1, Math.min(1, d.score || 0));
@@ -18,13 +22,26 @@
       var a = Math.abs(s) < 0.02 ? 0 : Math.min(0.42, 0.14 + Math.abs(s) * 0.32);
       var mix = tint.map(function (c) { return Math.round(255 * (1 - a) + c * a); });
       var color = 'rgb(' + mix.join(',') + ')';
+      
       document.documentElement.style.backgroundColor = color;
-      document.body.style.backgroundColor = color;
+      if (document.body) {
+        document.body.style.backgroundColor = color;
+      }
+
+      try {
+        sessionStorage.setItem('fpl_bg_color', color);
+        localStorage.setItem('fpl_bg_color', color);
+      } catch (e) {}
 
       var note = document.getElementById('fpl-mood-note');
       if (note && d.event != null) {
-        note.textContent = 'This page is tinted by my FPL mood \u2014 GW' + d.event +
+        var noteText = 'This page is tinted by my FPL mood \u2014 GW' + d.event +
           ': ' + d.points + ' pts vs a global average of ' + d.average + '.';
+        note.textContent = noteText;
+        try {
+          sessionStorage.setItem('fpl_mood_note', noteText);
+          localStorage.setItem('fpl_mood_note', noteText);
+        } catch (e) {}
       }
     })
     .catch(function () { /* no data, no tint */ });

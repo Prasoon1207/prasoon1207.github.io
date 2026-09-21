@@ -4,35 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title}</title>
+    <title>The Illusion of Human-Like Collaboration</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <script>
-      (function() {{
-        try {{
+      (function() {
+        try {
           var bg = sessionStorage.getItem('fpl_bg_color') || localStorage.getItem('fpl_bg_color');
-          if (bg) {{
+          if (bg) {
             document.documentElement.style.backgroundColor = bg;
-            document.write('<style>html, body {{ background-color: ' + bg + ' !important; }}</style>');
-          }}
-        }} catch(e) {{}}
-      }})();
+            document.write('<style>html, body { background-color: ' + bg + ' !important; }</style>');
+          }
+        } catch(e) {}
+      })();
     </script>
     <!-- MathJax for LaTeX rendering -->
     <script>
-        window.MathJax = {{
-            tex: {{
+        window.MathJax = {
+            tex: {
                 inlineMath: [['$', '$'], ['\\(', '\\)']],
                 displayMath: [['$$', '$$'], ['\\[', '\\]']],
                 processEscapes: true,
                 processEnvironments: true
-            }},
-            options: {{
+            },
+            options: {
                 skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-            }}
-        }};
+            }
+        };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 </head>
@@ -56,15 +56,23 @@
             <tr>
               <td style="padding:16px;width:100%;vertical-align:middle">
                 <header>
-                  <h1 style="font-size: 26px; font-weight: 700; margin-top: 0; margin-bottom: 6px; line-height: 1.25;">{title}</h1>
-                  <p class="meta" style="margin-top: 0; margin-bottom: 16px;"><i>Published on {formatted_date} &bull; {reading_time} min read</i></p>
+                  <h1 style="font-size: 26px; font-weight: 700; margin-top: 0; margin-bottom: 6px; line-height: 1.25;">The Illusion of Human-Like Collaboration</h1>
+                  <p class="meta" style="margin-top: 0; margin-bottom: 16px;"><i>Published on September 21, 2026 &bull; 4 min read</i></p>
                 </header>
 
                 <hr style="border: 0; border-top: 1px solid #eeeeee; margin: 16px 0 24px 0;">
 
                 <main>
                   <article class="post-content">
-{content}
+            <p>
+                I have been setting aside some time in my day-to-day to start witing more. This is motivated from an internal pressure to keep myself accountable for building the habit but also a realization that I have a lot of takes (not sure about their scoville scale yet) that I want to start sharing. I have always been someone who loves engaging in discussions, but realized that a lot of my takes don't get shared, or even if they do, they don't get the engagement I would like them to. The reader of this 'thought' blog is gently advised that most of my blogs henceforth, are 'unfinished'. This is intentional, partly because I am a newbie writer but mostly because, the pace of prgress in my field makes my conclusions irrelevant.
+            </p>
+            <p>
+                Last year, when AI systems trained for thinking in high-level languages achieved the gold medal in IMO, I remember having this discussion with a close peer that I am not sure what the target is for the next year. Surely, it was too soon for next-word predictors to disambiguate open conjectures, yet here is the writer still struggling to keep up with the Navier-Stokes solution announced by OpenAI last week.
+            </p>
+            <p>
+                While the progress in the field of math is not the main topic of this blog, it sets the stage for something I'd like to discuss. From a tweet by Sam Altman, where he stated that the scale of different agents colaborating on the Navier Stokes was around 10,000, it made me want to write my thoughts on this paradigm of multi-agent orchestration and how it is not as 'human-like' as it seems to be. Moreoevr, this blog will bring out some mis-alignment in the training of these massive systems that make them less collaborative with humans, which the writer thinks is 'pretty' not cool.
+            </p>
                   </article>
                 </main>
 

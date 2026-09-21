@@ -23,11 +23,13 @@ li {
   font-size: 14px;
 }
 
-html, body {
+html {
   min-height: 100%;
+  overflow-y: scroll;
 }
 
 body {
+  min-height: 100%;
   background-color: #ffffff;
   color: #000000;
   margin: 0;
@@ -76,19 +78,39 @@ span.highlight {
   padding: 20px 2.5%;
 }
 
-.post-page h1 {
+.post-page h1,
+.post-content h1 {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 4px;
 }
 
+.post-content h2 {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.post-content h3 {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 6px;
+}
+
 .post-page p,
-.post-page li {
+.post-page li,
+.post-content p,
+.post-content li {
   line-height: 1.6;
 }
 
-.post-page blockquote {
+.post-page blockquote,
+.post-content blockquote {
   margin: 1em 0;
   padding-left: 14px;
   border-left: 3px solid #dddddd;
@@ -97,28 +119,34 @@ span.highlight {
 }
 
 .post-page code,
-.post-page pre {
+.post-page pre,
+.post-content code,
+.post-content pre {
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
   font-size: 13px;
   background-color: #f6f8fa;
   border-radius: 4px;
 }
 
-.post-page code {
+.post-page code,
+.post-content code {
   padding: 2px 5px;
 }
 
-.post-page pre {
+.post-page pre,
+.post-content pre {
   padding: 14px;
   overflow: auto;
 }
 
-.post-page pre code {
+.post-page pre code,
+.post-content pre code {
   padding: 0;
   background-color: transparent;
 }
 
-.post-page hr {
+.post-page hr,
+.post-content hr {
   border: 0;
   border-top: 1px solid #eeeeee;
   margin: 24px 0;

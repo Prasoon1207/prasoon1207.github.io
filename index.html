@@ -11,6 +11,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+      (function() {
+        try {
+          var bg = sessionStorage.getItem('fpl_bg_color') || localStorage.getItem('fpl_bg_color');
+          if (bg) {
+            document.documentElement.style.backgroundColor = bg;
+            document.write('<style>html, body { background-color: ' + bg + ' !important; }</style>');
+          }
+        } catch(e) {}
+      })();
+    </script>
   </head>
 
   <body>
@@ -109,7 +120,10 @@
               <td style="padding:16px;width:100%;vertical-align:middle">
                 <h2>Thoughts</h2>
                 <ul style="padding-left:18px;margin-top:8px;">
-                <li class="meta">The first one is coming soon.</li>
+                <li>
+                    <span class="meta">[2026-09-21]</span> &ndash; 
+                    <a href="post/2026-09-21-multi-agent-systems.html">The Illusion of Human-Like Collaboration</a>
+                </li>
                 </ul>
               </td>
             </tr>

@@ -11,6 +11,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+      (function() {{
+        try {{
+          var bg = sessionStorage.getItem('fpl_bg_color') || localStorage.getItem('fpl_bg_color');
+          if (bg) {{
+            document.documentElement.style.backgroundColor = bg;
+            document.write('<style>html, body {{ background-color: ' + bg + ' !important; }}</style>');
+          }}
+        }} catch(e) {{}}
+      }})();
+    </script>
   </head>
 
   <body>
