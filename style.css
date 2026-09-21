@@ -88,8 +88,8 @@ span.highlight {
 
 .post-content h2 {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: normal;
   margin-top: 24px;
   margin-bottom: 8px;
 }
@@ -103,10 +103,14 @@ span.highlight {
 }
 
 .post-page p,
+.post-content p {
+  line-height: normal;
+  margin: 14px 0;
+}
+
 .post-page li,
-.post-content p,
 .post-content li {
-  line-height: 1.6;
+  line-height: 1.35;
 }
 
 .post-page blockquote,
