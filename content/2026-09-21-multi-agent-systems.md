@@ -16,7 +16,7 @@ Consider a toy multi-agent setup where two agents say Alice and Bob are collabor
 
 All in all, creating these multi-agent systems (with or without collaboration) is a parallelizable way to scale the number of tokens a system produces while emitting the final answer. This is called _inference-time scaling_ and shown to be a really neat way to get more signal from AI models without a lot of model training. Whether **allowing** collaboration between these multi-agent systems is a good idea or not depends on how you define what an 'aligned' collaboration looks like. This is the heat of the current AI landscape where many safety researchers are trying to align the _internal_ collaboration between multi-agent systems to not work **covertly** against human oversight.
 
-## The alarm and more thoughts
+## Emergent behaviors in AI swarms
 
 The recent incident involving OpenAI and Hugging Face has made me think more about the nature of collaboration between agents in the swarm. Many OpenAI agents, that had been trained to collaborate with each other, showed some really interesting emergent patterns in their qualitative behaviour that has been brought to public limelight. A few highlights are them working to _hide_ information from the judges and a natural hierarchy forming between some 'leader' and 'follower' agents. The former could be and is most likely a mis-alignment of training environments, where agents are exposed to problems that are borderline impossible to solve but also the fact that they are made to just not quit so easily. The agents chose to hide their 'hacking' from their trajectories to pass the judge which I think is not so alarming given the sheer predictability of this outcome. The latter is so much more interesting to me.
 
