@@ -104,13 +104,14 @@ span.highlight {
 
 .post-page p,
 .post-content p {
-  line-height: normal;
-  margin: 14px 0;
+  line-height: 1.25;
+  margin: 10px 0;
 }
 
 .post-page li,
 .post-content li {
-  line-height: 1.35;
+  line-height: 1.25;
+  margin-bottom: 4px;
 }
 
 .post-page blockquote,
