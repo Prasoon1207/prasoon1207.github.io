@@ -38,12 +38,14 @@ fi
 # Open browser after a brief moment
 (sleep 1 && open "http://localhost:$PORT") &
 
-# Start server using ruby or python
-if command -v ruby >/dev/null 2>&1; then
-    ruby -run -e httpd . -p "$PORT"
+# Start server with live rebuilding & cache-busting
+if command -v python3 >/dev/null 2>&1 && [ -f "scripts/preview_server.py" ]; then
+    python3 scripts/preview_server.py "$PORT"
 elif command -v python3 >/dev/null 2>&1; then
     python3 -m http.server "$PORT"
+elif command -v ruby >/dev/null 2>&1; then
+    ruby -run -e httpd . -p "$PORT"
 else
-    echo "❌ Error: Neither Ruby nor Python 3 is available to serve files."
+    echo "❌ Error: Neither Python 3 nor Ruby is available to serve files."
     exit 1
 fi

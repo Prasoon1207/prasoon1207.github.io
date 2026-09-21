@@ -307,6 +307,13 @@ def build_site():
         f.write(index_html)
         
     print(" Compiled: Rebuilt main index.html successfully!")
+    
+    # Ensure fpl.json is also present in post/ so post pages never 404 regardless of script version
+    src_fpl = os.path.join(BASE_DIR, "fpl.json")
+    dst_fpl = os.path.join(POST_DIR, "fpl.json")
+    if os.path.exists(src_fpl):
+        import shutil
+        shutil.copyfile(src_fpl, dst_fpl)
     print("🎉 Build complete! Open index.html in a browser to preview.")
 
 if __name__ == "__main__":
