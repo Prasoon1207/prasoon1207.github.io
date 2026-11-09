@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Are Multilingual Models Improving? Revisiting Cross-Lingual Transfer (HAT Score · EMNLP 2026)</title>
+  <meta name="description" content="Official project page and open-source code for Hardness Adjusted Transfer (HAT) Score — de-confounding source capability from cross-lingual transfer in LLMs (EMNLP 2026).">
+  <meta name="author" content="Prasoon Bajpai, Eleftheria Briakou, Colin Cherry, Preethi Jyothi, Vihari Piratla">
+  <meta property="og:title" content="Are Multilingual Models Improving? Revisiting Cross-Lingual Transfer">
+  <meta property="og:description" content="Hardness Adjusted Transfer (HAT) Score isolates true cross-lingual transfer from general source-language capability gains across 20 LLMs and 3 multilingual benchmarks (EMNLP 2026).">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prasoon1207.github.io/hat_xlt/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+  <nav class="top-nav" aria-label="Project navigation">
+    <div class="top-nav-inner">
+      <a href="../" class="nav-brand" id="nav-home-link">
+        <span>Prasoon Bajpai</span>
+        <span class="nav-badge">HAT · EMNLP 2026</span>
+      </a>
+      <div class="nav-links">
+        <a href="#abstract" id="nav-abstract">Abstract</a>
+        <a href="#simulator" id="nav-simulator">Interactive Demo</a>
+        <a href="#findings" id="nav-findings">Key Findings</a>
+        <a href="#leaderboard" id="nav-leaderboard">Leaderboard</a>
+        <a href="#code" id="nav-code">Code</a>
+        <a href="#bibtex" id="nav-bibtex">BibTeX</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Hero Header -->
+    <header class="hero">
+      <div class="venue-pill">EMNLP 2026</div>
+      <h1>Are Multilingual Models Improving? Revisiting Cross-Lingual Transfer</h1>
+
+      <div class="authors">
+        <a href="https://prasoon1207.github.io/">Prasoon Bajpai<sup>1*</sup></a>
+        <a href="https://scholar.google.com/scholar?q=Eleftheria+Briakou">Eleftheria Briakou<sup>1</sup></a>
+        <a href="https://scholar.google.com/scholar?q=Colin+Cherry">Colin Cherry<sup>1</sup></a>
+        <a href="https://scholar.google.com/scholar?q=Preethi+Jyothi">Preethi Jyothi<sup>1,2</sup></a>
+        <a href="https://scholar.google.com/scholar?q=Vihari+Piratla">Vihari Piratla<sup>1†</sup></a>
+      </div>
+
+      <div class="affiliations">
+        <span><sup>1</sup>Google DeepMind</span>
+        <span><sup>2</sup>Indian Institute of Technology Bombay</span>
+        <br>
+        <small><sup>*</sup><code>prbajpai@google.com</code> &nbsp;·&nbsp; <sup>†</sup><code>vpiratla@google.com</code></small>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" id="btn-paper-arxiv" href="https://arxiv.org/abs/2606.21954" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Paper (arXiv)
+        </a>
+        <a class="btn btn-accent" id="btn-code-github" href="https://github.com/Prasoon1207/hat_xlt" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          Code (GitHub)
+        </a>
+        <a class="btn" id="btn-jump-leaderboard" href="#leaderboard">Interactive Leaderboard</a>
+        <a class="btn" id="btn-jump-code" href="#code">Quickstart</a>
+        <a class="btn" id="btn-jump-bibtex" href="#bibtex">BibTeX</a>
+      </div>
+    </header>
+
+    <!-- Headline Takeaways -->
+    <section class="takeaways-grid" aria-label="Headline takeaways">
+      <div class="takeaway-card">
+        <div class="takeaway-stat">R² &gt; 0.94</div>
+        <div class="takeaway-title">Accuracy on the Line</div>
+        <p class="takeaway-desc">
+          Target-language accuracy is tightly linearly coupled with source-language accuracy across 20 diverse LLMs, confounding standard transfer metrics.
+        </p>
+      </div>
+      <div class="takeaway-card">
+        <div class="takeaway-stat">50–80 HAT</div>
+        <div class="takeaway-title">Small Models Transfer Well</div>
+        <p class="takeaway-desc">
+          Transfer in 1B–4B models is not broken—low target scores stem from weak source competence, and scaling parameters improves true transfer only gradually.
+        </p>
+      </div>
+      <div class="takeaway-card">
+        <div class="takeaway-stat">93+ vs. 62</div>
+        <div class="takeaway-title">Reasoning Solved, Facts Stalled</div>
+        <p class="takeaway-desc">
+          Post-Jan 2025 models reach near-parity HAT (&gt;93) on reasoning (<code>MGSMv2</code>, <code>MMLU-ProX-Lite</code>), while factual recall (<code>ECLeKTic</code>) stalls.
+        </p>
+      </div>
+    </section>
+
+    <!-- Figure 1 Hero Visual -->
+    <div class="figure-card">
+      <img src="figures/accuracy_line_new.png" alt="Figure 1: Target accuracy scales predictably from source accuracy across ECLeKTic, MGSMv2, and MMLU-ProX-Lite">
+      <div class="figure-caption">
+        <strong>Figure 1: Target accuracy scales predictably from source accuracy.</strong> Evaluation across 20 LLMs spanning five model families (<code>Gemini</code>, <code>Gemma 3 &amp; 4</code>, <code>Claude</code>, <code>Qwen 3</code>, and <code>GPT-OSS</code>) on <strong>ECLeKTic</strong> ($R^2 = 0.984$), <strong>MGSMv2</strong> ($R^2 = 0.943$), and <strong>MMLU-ProX-Lite</strong> ($R^2 = 0.974$). Because source and target accuracies move together along a line, raw target accuracy and source–target gaps conflate general capability gains with cross-lingual transfer.
+      </div>
+    </div>
+
+    <!-- Abstract -->
+    <section class="section" id="abstract">
+      <div class="section-header">
+        <div class="section-kicker">Overview</div>
+        <h2>Abstract</h2>
+      </div>
+      <div class="card">
+        <p class="abstract-text">
+          Cross-lingual transfer is a model's ability to generalize capabilities from well-represented source languages to under-represented target languages. Existing measures of a model's transfer strength conflate improvements in transfer with general improvements to accuracy in the source language. We advocate for an alternate metric that reliably captures transfer strength called <strong>Hardness Adjusted Transfer (HAT) Score</strong>, and use it to derive multiple insights on factors influencing transfer strength. Our analysis across twenty diverse language models and three popular mainstream multilingual benchmarks argues that <strong>(1)</strong> transfer in small models is not broken, <strong>(2)</strong> we are making slower than expected progress in cross-lingual transfer with model size, and <strong>(3)</strong> we have made clear progress over time on reasoning-heavy benchmarks while closed-book factual transfer remains stalled.
+        </p>
+      </div>
+    </section>
+
+    <!-- Mathematical Formulation & Interactive Simulator -->
+    <section class="section" id="simulator">
+      <div class="section-header">
+        <div class="section-kicker">Methodology &amp; Interactive Sandbox</div>
+        <h2>De-Confounding Source Competence with HAT Score</h2>
+      </div>
+
+      <div class="math-grid">
+        <div class="math-box">
+          <h3>
+            <span>Standard XLT Metrics</span>
+            <span class="status-tag confounded">Confounded by $p_S(s \mid M)$</span>
+          </h3>
+          <p style="font-size:0.9rem;color:var(--ink-secondary);margin-top:0;">
+            Average Target Accuracy, XLT Gap, and Transfer Score weight conditional transfer $\mathbb{E}[T_\ell \mid S=s, M]$ by the model's own source pass-rate distribution $p_S(s \mid M)$:
+          </p>
+          <div style="font-size:0.9rem;overflow-x:auto;">
+            $$\text{Target Acc.} = \int_0^1 \mathbb{E}_{D,\ell}[T_\ell \mid S=s, M]\, p_S(s \mid M)\, ds$$
+            $$\text{XLT Gap} = \int_0^1 \bigl(s - \mathbb{E}_{D,\ell}[T_\ell \mid S=s, M]\bigr)\, p_S(s \mid M)\, ds$$
+          </div>
+          <p style="font-size:0.84rem;color:var(--ink-muted);margin-bottom:0;">
+            Right-shifting $p_S(s \mid M)$ (stronger English/source model) inflates Target Accuracy &amp; Transfer Score and widens XLT Gap—even for identical transfer profiles.
+          </p>
+        </div>
+
+        <div class="math-box highlight">
+          <h3>
+            <span>Hardness Adjusted Transfer (HAT)</span>
+            <span class="status-tag calibrated">Invariant to $p_S(s \mid M)$</span>
+          </h3>
+          <p style="font-size:0.9rem;color:var(--ink-secondary);margin-top:0;">
+            HAT replaces $p_S(s \mid M)$ with a $\text{Uniform}(0, 1)$ distribution over source difficulty and normalizes by $2$ so $\text{HAT} \in [0, 1]$:
+          </p>
+          <div style="font-size:0.9rem;overflow-x:auto;">
+            $$\text{HAT Score} = 2 \int_0^1 \mathbb{E}_{D,\ell}[T_\ell \mid S=s, M]\, ds$$
+            $$\hat{m} = \arg\min_m \sum_i \bigl(t^{(i)} - m s^{(i)}\bigr)^2 \implies \text{HAT} = \hat{m}$$
+          </div>
+          <p style="font-size:0.84rem;color:var(--ink-muted);margin-bottom:0;">
+            Estimated from $N = 10$ stochastic passes per prompt using zero-intercept OLS ($\mathbb{E}[T_\ell \mid S=0] = 0$), yielding a low-variance, scale-comparable metric.
+          </p>
+        </div>
+      </div>
+
+      <!-- Live Interactive Simulator -->
+      <div class="sim-card">
+        <div class="sim-presets">
+          <span class="sim-presets-label">Try Paper Scenarios:</span>
+          <button type="button" class="chip-btn active" id="preset-gpt20" data-sim-preset="gpt20" data-src="0.20" data-slope="0.81">
+            GPT-OSS-20B on ECLeKTic (Low Source)
+          </button>
+          <button type="button" class="chip-btn" id="preset-gpt120" data-sim-preset="gpt120" data-src="0.52" data-slope="0.81">
+            Shift Source Competence Only (Same Slope!)
+          </button>
+          <button type="button" class="chip-btn" id="preset-gemma1b" data-sim-preset="gemma1b" data-src="0.18" data-slope="0.58">
+            Gemma-3-1B Profile (m = 0.58)
+          </button>
+          <button type="button" class="chip-btn" id="preset-gemma27b" data-sim-preset="gemma27b" data-src="0.46" data-slope="0.77">
+            Gemma-3-27B Profile (m = 0.77, Gap Widens!)
+          </button>
+        </div>
+
+        <div class="sim-layout">
+          <div class="sim-canvas-wrap">
+            <canvas id="hat-sim-canvas" width="460" height="360"></canvas>
+          </div>
+
+          <div class="sim-controls">
+            <div class="slider-group">
+              <label for="slider-source-shift">
+                <span>1. Source Competence Distribution $\mathbb{E}[S]$</span>
+                <span class="slider-val" id="val-source-shift">20%</span>
+              </label>
+              <input type="range" id="slider-source-shift" min="0.12" max="0.88" step="0.01" value="0.20">
+              <div class="slider-hint">Drag to shift $p_S(s \mid M)$ without changing cross-lingual transfer strength. Watch standard metrics move while HAT stays fixed!</div>
+            </div>
+
+            <div class="slider-group">
+              <label for="slider-transfer-slope">
+                <span>2. True Transfer Profile Slope ($m$)</span>
+                <span class="slider-val" id="val-transfer-slope">0.81</span>
+              </label>
+              <input type="range" id="slider-transfer-slope" min="0.35" max="1.00" step="0.01" value="0.81">
+              <div class="slider-hint">Controls $\mathbb{E}[T_\ell \mid S=s] = m \cdot s$. Parity ($y = x$) corresponds to $m = 1.00$ ($\text{HAT} = 100$).</div>
+            </div>
+
+            <div class="sim-readouts">
+              <div class="readout-box">
+                <div class="readout-label">Source Acc.</div>
+                <div class="readout-num" id="sim-out-src">20.0%</div>
+              </div>
+              <div class="readout-box">
+                <div class="readout-label">Target Acc. (Confounded)</div>
+                <div class="readout-num" id="sim-out-tgt">16.2%</div>
+              </div>
+              <div class="readout-box">
+                <div class="readout-label">XLT Gap (Confounded)</div>
+                <div class="readout-num" id="sim-out-gap">3.8%</div>
+              </div>
+              <div class="readout-box">
+                <div class="readout-label">Transfer Score $\tau$</div>
+                <div class="readout-num" id="sim-out-ts">81.0%</div>
+              </div>
+              <div class="readout-box hat-highlight">
+                <div>
+                  <div class="readout-label">HAT Score (De-Confounded)</div>
+                  <div style="font-size:0.75rem;color:#3b82f6;">Depends strictly on transfer profile</div>
+                </div>
+                <div class="readout-num" id="sim-out-hat">81.0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Empirical Key Findings -->
+    <section class="section" id="findings">
+      <div class="section-header">
+        <div class="section-kicker">Empirical Analysis</div>
+        <h2>Key Findings Across 20 LLMs &amp; 3 Benchmarks</h2>
+      </div>
+
+      <!-- Finding 1: Metric Reliability -->
+      <div class="figure-card">
+        <h3 style="margin-top:0;font-size:1.15rem;">1. Standard Metrics Misdiagnose Transfer Progress</h3>
+        <div class="figure-grid-2">
+          <div>
+            <img src="figures/illustration_tgt.png" alt="GPT-OSS 20B vs 120B transfer profiles on ECLeKTic">
+          </div>
+          <div>
+            <img src="figures/illustration_xgp.png" alt="Gemma-3 1B vs 27B transfer profiles on MMLU-ProX-Lite">
+          </div>
+        </div>
+        <div class="figure-caption">
+          <strong>Left (ECLeKTic — GPT-OSS-20B vs. 120B):</strong> Target accuracy jumps from 18.0% to 25.4% and Transfer Score rises from 53.5 to 61.0, yet their HAT transfer profiles overlap nearly identically ($\text{HAT} = 80.1$ vs. $82.2$, overlapping 95% CIs). The 120B gain comes purely from higher source accuracy ($19.7\% \to 27.9\%$).
+          <br>
+          <strong>Right (MMLU-ProX-Lite — Gemma-3-1B vs. 27B):</strong> XLT Gap widens from 2.7% to 6.4% (falsely suggesting regression!), even though the 27B model's transfer profile is dramatically steeper—captured cleanly by HAT rising from <strong>58.4 to 77.2</strong>.
+        </div>
+      </div>
+
+      <!-- Finding 2: Model Size Scaling -->
+      <div class="figure-card">
+        <h3 style="margin-top:0;font-size:1.15rem;">2. Model Size Scaling: Gradual Gains &amp; Capable Small Models</h3>
+        <div class="figure-grid-2">
+          <div>
+            <img src="figures/eclektic_scale.png" alt="Gemma-3 scaling ladder on ECLeKTic">
+          </div>
+          <div>
+            <img src="figures/mmlu_scale.png" alt="Gemma-3 scaling ladder on MMLU-ProX-Lite">
+          </div>
+        </div>
+        <div class="figure-caption">
+          <strong>Scaling within Gemma-3 (1B $\to$ 4B $\to$ 12B $\to$ 27B):</strong> On ECLeKTic, raw target accuracy inflates $4.3\times$ ($4.6\% \to 19.8\%$), whereas HAT rises modestly from $48.2$ to $64.1$ at 12B and plateaus at 27B ($63.8$). Small models (1B–4B) across families already transfer 50–80% of their source capability.
+        </div>
+      </div>
+
+      <!-- Finding 3: Progress over time -->
+      <div class="figure-card">
+        <h3 style="margin-top:0;font-size:1.15rem;">3. Temporal Progress: Reasoning Benchmarks Are Nearly Saturated</h3>
+        <div class="figure-grid-3">
+          <img src="figures/mgsm2_dual_fit.png" alt="Dual-fit temporal clustering on MGSMv2">
+          <img src="figures/mmlu_dual_fit.png" alt="Dual-fit temporal clustering on MMLU-ProX-Lite">
+          <img src="figures/eclektic_dual_fit.png" alt="Dual-fit temporal clustering on ECLeKTic">
+        </div>
+        <div class="figure-caption">
+          <strong>Pair-of-lines temporal fit (Algorithm 1, Jan 2025 knowledge cutoff):</strong> Newer frontier models shift onto a tighter, near-parity regime on <strong>MGSMv2</strong> (median HAT $90.6 \to 97.3$) and <strong>MMLU-ProX-Lite</strong> (median HAT $74.8 \to 93.5$), indicating both benchmarks are nearly saturated for cross-lingual transfer. In contrast, closed-book factual transfer on <strong>ECLeKTic</strong> shows no upward shift ($67.2 \to 62.1$).
+        </div>
+      </div>
+
+      <!-- Finding 4: All Models & Script Congruence -->
+      <div class="figure-card">
+        <h3 style="margin-top:0;font-size:1.15rem;">4. Holistic Comparison, Thinking Budgets &amp; Script Congruence</h3>
+        <img src="figures/all_hat.png" alt="HAT scores across all 20 models and all 3 benchmarks">
+        <div class="figure-caption" style="margin-bottom:1.1rem;">
+          <strong>HAT scores across all 20 models:</strong> <code>Gemini-3-Flash</code> leads overall cross-lingual transfer across all three benchmarks (84.6 ECLeKTic, 98.8 MMLU-ProX-Lite, 99.6 MGSMv2). Enabling test-time thinking substantially boosts XLT (e.g., <code>Gemini-2.5-Flash</code> improves from 60.4 $\to$ 81.7 on ECLeKTic with ~15–20% longer target-language reasoning traces).
+        </div>
+
+        <h4 style="margin:0.5rem 0 0.25rem;font-size:0.98rem;">Script Congruence Breakdown (Aggregated HAT Score Across Models)</h4>
+        <table class="compact-table">
+          <thead>
+            <tr>
+              <th>Benchmark</th>
+              <th>Capability</th>
+              <th>Same Script HAT</th>
+              <th>Different Script HAT</th>
+              <th>$\Delta$ (Same $-$ Different)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ECLeKTic</strong></td>
+              <td>Closed-book factual recall</td>
+              <td class="mono">79.1 ± 10.7</td>
+              <td class="mono">61.7 ± 14.9</td>
+              <td class="mono" style="color:var(--accent-red);font-weight:700;">+17.4 ± 7.4</td>
+            </tr>
+            <tr>
+              <td><strong>MGSMv2</strong></td>
+              <td>Mathematical reasoning</td>
+              <td class="mono">89.6 ± 14.0</td>
+              <td class="mono">89.1 ± 15.3</td>
+              <td class="mono">+0.5 ± 2.9</td>
+            </tr>
+            <tr>
+              <td><strong>MMLU-ProX-Lite</strong></td>
+              <td>Conceptual knowledge + reasoning</td>
+              <td class="mono">79.0 ± 12.0</td>
+              <td class="mono">80.9 ± 12.4</td>
+              <td class="mono">-1.9 ± 1.4</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Interactive 20-Model Leaderboard & Empirical Profile Viewer -->
+    <section class="section" id="leaderboard">
+      <div class="section-header">
+        <div class="section-kicker">Interactive Benchmark Explorer</div>
+        <h2>20-Model Leaderboard &amp; Empirical Transfer Profiles</h2>
+      </div>
+      <p style="color:var(--ink-secondary);margin-top:-0.6rem;margin-bottom:1.2rem;font-size:0.94rem;">
+        Select a benchmark, filter by model family, click column headers to sort, and <strong>click any model row</strong> to inspect its empirical $N=10$ HAT Transfer Profile from the paper.
+      </p>
+
+      <div class="explorer-toolbar">
+        <div class="dataset-tabs" role="tablist" aria-label="Benchmark selector">
+          <button type="button" class="dataset-tab active" id="tab-eclektic" data-bench-tab="eclektic">ECLeKTic (12 Langs)</button>
+          <button type="button" class="dataset-tab" id="tab-mmlu" data-bench-tab="mmlu_prox_lite">MMLU-ProX-Lite (29 Langs)</button>
+          <button type="button" class="dataset-tab" id="tab-mgsmv2" data-bench-tab="mgsmv2">MGSMv2 (11 Langs)</button>
+        </div>
+
+        <div class="family-filters" aria-label="Model family filter">
+          <button type="button" class="chip-btn active" id="filter-all" data-family-filter="All">All (20)</button>
+          <button type="button" class="chip-btn" id="filter-gemini" data-family-filter="Gemini">Gemini</button>
+          <button type="button" class="chip-btn" id="filter-gemma4" data-family-filter="Gemma 4">Gemma 4</button>
+          <button type="button" class="chip-btn" id="filter-gemma3" data-family-filter="Gemma 3">Gemma 3</button>
+          <button type="button" class="chip-btn" id="filter-claude" data-family-filter="Claude">Claude</button>
+          <button type="button" class="chip-btn" id="filter-qwen" data-family-filter="Qwen 3">Qwen 3</button>
+          <button type="button" class="chip-btn" id="filter-gptoss" data-family-filter="GPT-OSS">GPT-OSS</button>
+        </div>
+      </div>
+
+      <div class="explorer-grid">
+        <div class="table-wrap">
+          <table class="leaderboard-table" id="hat-leaderboard-table">
+            <thead id="leaderboard-thead"></thead>
+            <tbody id="leaderboard-tbody"></tbody>
+          </table>
+        </div>
+
+        <aside class="profile-inspector" aria-live="polite">
+          <div class="inspector-header">
+            <div class="inspector-title" id="inspector-model-name">Gemini-3-Flash</div>
+            <div class="inspector-subtitle" id="inspector-bench-name">ECLeKTic · Cutoff 2025-01</div>
+          </div>
+          <img id="inspector-profile-img" src="figures/profiles/eclektic__3-flash.png" alt="Empirical HAT Transfer Profile">
+          <div class="inspector-metrics">
+            <div class="inspector-stat">
+              <span>Source Acc.</span>
+              <strong id="insp-src">68.4%</strong>
+            </div>
+            <div class="inspector-stat">
+              <span>Target Acc.</span>
+              <strong id="insp-tgt">60.5%</strong>
+            </div>
+            <div class="inspector-stat">
+              <span>HAT (95% CI)</span>
+              <strong id="insp-hat" style="color:var(--accent-blue);font-size:0.8rem;">84.6 [82.1, 87.1]</strong>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Open-Source Code & Quickstart -->
+    <section class="section" id="code">
+      <div class="section-header">
+        <div class="section-kicker">Open-Source Toolkit</div>
+        <h2>Evaluate Your Models with <code>hat-xlt</code></h2>
+      </div>
+
+      <div class="card">
+        <p style="margin-top:0;color:var(--ink-secondary);font-size:0.95rem;">
+          The full reference implementation—including <strong>HAT Score</strong> (zero-intercept OLS, unconstrained linear, and RBF Kernel Ridge Regression), paired 1,000-sample bootstrap 95% confidence intervals, <strong>Algorithm 1</strong> temporal model clustering, script congruence partitioning, and exact LLM-as-a-Judge templates for <code>ECLeKTic</code>, <code>MGSMv2</code>, and <code>MMLU-ProX-Lite</code>—is available at <a href="https://github.com/Prasoon1207/hat_xlt" target="_blank" rel="noopener"><strong>github.com/Prasoon1207/hat_xlt</strong></a>.
+        </p>
+
+        <h3 style="font-size:1rem;margin-bottom:0.3rem;">Installation &amp; CLI Usage</h3>
+        <div class="code-panel">
+          <button type="button" class="copy-btn" id="copy-cli-btn" data-copy-target="code-cli-snippet">Copy</button>
+          <pre id="code-cli-snippet">git clone https://github.com/Prasoon1207/hat_xlt.git
+cd hat_xlt
+python3 -m venv .venv && .venv/bin/pip install -e ".[estimators,dev]"
+
+# Compute HAT Score + 95% CIs + Transfer Profile plot on multi-pass JSONL outputs
+.venv/bin/hat-eval score eval_outputs.jsonl --all-estimators --plot transfer_profile.png
+
+# Reproduce EMNLP 2026 Accuracy-on-the-Line R² & Algorithm 1 Dual-Fit tables
+.venv/bin/hat-eval paper --benchmark all</pre>
+        </div>
+
+        <h3 style="font-size:1rem;margin:1.35rem 0 0.3rem;">Python API (5 Lines)</h3>
+        <div class="code-panel">
+          <button type="button" class="copy-btn" id="copy-py-btn" data-copy-target="code-py-snippet">Copy</button>
+          <pre id="code-py-snippet">from hat_xlt import evaluate_instances, hat_score
+from hat_xlt.plotting import plot_transfer_profile
+
+# s: shape (n_items,) source pass-rates; t: shape (n_items, n_langs) target pass-rates
+report = evaluate_instances(s, t, n_bootstrap=1000, seed=42)
+print("HAT Score:", report.hat_score.format(1))  # e.g., 84.6 [82.1, 87.1]
+plot_transfer_profile(s, t, model_name="Gemini-3-Flash", dataset_name="ECLeKTic", save_path="hat.png")</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- BibTeX Citation -->
+    <section class="section" id="bibtex">
+      <div class="section-header">
+        <div class="section-kicker">Citation</div>
+        <h2>BibTeX</h2>
+      </div>
+      <div class="code-panel">
+        <button type="button" class="copy-btn" id="copy-bib-btn" data-copy-target="bibtex-block">Copy BibTeX</button>
+        <pre id="bibtex-block">@inproceedings{bajpai2026multilingual,
+  title={Are Multilingual Models Improving? Revisiting Cross-Lingual Transfer},
+  author={Bajpai, Prasoon and Briakou, Eleftheria and Cherry, Colin and Jyothi, Preethi and Piratla, Vihari},
+  booktitle={Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year={2026},
+  url={https://arxiv.org/abs/2606.21954}
+}</pre>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <div>
+        <strong>Are Multilingual Models Improving? Revisiting Cross-Lingual Transfer</strong> · EMNLP 2026
+      </div>
+      <div>
+        <a href="../">Prasoon Bajpai</a> &nbsp;·&nbsp;
+        <a href="https://arxiv.org/abs/2606.21954">arXiv:2606.21954</a> &nbsp;·&nbsp;
+        <a href="https://github.com/Prasoon1207/hat_xlt">GitHub Code</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
